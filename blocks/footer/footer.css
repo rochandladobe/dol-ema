@@ -127,12 +127,22 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 16px 28px;
+  padding-block: 24px;
+  padding-inline: max(48px, calc((100% - 1296px) / 2));
+}
+
+/* Reset the generic child-centering rule for band 2's flex items. */
+.footer .footer-wrapper > div:nth-child(2) > * {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Menu list (first ul): horizontal, pushed left, takes remaining space. */
 .footer .footer-wrapper > div:nth-child(2) > ul:first-of-type {
   list-style: none;
-  margin: 0 auto 0 0;
+  margin: 0;
+  margin-right: auto;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
