@@ -14,7 +14,9 @@
   background-color: #122e51;
 }
 
-/* The authored picture becomes the full-bleed background image. */
+/* The authored picture becomes the full-bleed background image.
+   Absolute + inset:0 resolves to .hero-gov (the only positioned ancestor),
+   so it spans the full viewport width rather than the 1200px content row. */
 .hero-gov > div > div:first-child {
   position: absolute;
   inset: 0;
@@ -41,10 +43,10 @@
   pointer-events: none;
 }
 
-/* Content row sits above the image + overlay. */
+/* Content row: constrained to 1200px and centered. Kept static (NOT
+   positioned) so the absolutely-positioned image inside it resolves its
+   inset:0 against .hero-gov and spans the full viewport width. */
 .hero-gov > div {
-  position: relative;
-  z-index: 2;
   display: flex;
   align-items: center;
   width: 100%;
@@ -53,8 +55,10 @@
   padding: 80px 48px;
 }
 
-/* Title cell (last child). */
+/* Title cell (last child) — lifted above the image + overlay. */
 .hero-gov > div > div:last-child {
+  position: relative;
+  z-index: 2;
   max-width: 570px;
 }
 
