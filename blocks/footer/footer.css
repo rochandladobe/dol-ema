@@ -1,166 +1,173 @@
-/* footer.css - SSS.gov USWDS big footer */
+/* footer.css - DOL.gov two-band footer
+   Band 1 (top, lighter blue #1b4d7c): site links + seal/address
+   Band 2 (bottom, navy #122e51): secondary menu + social links */
 .footer {
-  background-color: #122e51;
-  color: #fff;
   padding: 0;
 }
 
 .footer .footer-wrapper {
-  max-width: 1296px;
-  margin: 0 auto;
-  padding: 40px 48px 24px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-}
-
-@media (min-width: 768px) {
-  .footer .footer-wrapper {
-    grid-template-columns: 1fr 1.5fr;
-    gap: 0;
-  }
-}
-
-/* Left: Contact info */
-.footer .footer-wrapper > div:first-child {
-  padding-right: 0;
-}
-
-@media (min-width: 768px) {
-  .footer .footer-wrapper > div:first-child {
-    padding-right: 30px;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-.footer .footer-wrapper > div:first-child p {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  line-height: 1.7;
-  margin: 0 0 4px;
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-/* SSS seal logo rendered via CSS (avoids content-pipeline image processing) */
-.footer .footer-wrapper > div:first-child::before {
-  content: "";
   display: block;
-  width: 90px;
-  height: 90px;
-  margin-bottom: 16px;
-  background-image: url("https://www.sss.gov/wp-content/themes/sss/assets/visuals/css-assets/sss-logo.svg");
+}
+
+/* Each band is full-width with its own background; inner content centered. */
+.footer .footer-wrapper > div {
+  padding: 40px 48px;
+}
+
+.footer .footer-wrapper > div > * {
+  max-width: 1296px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Band 1: top — lighter blue, big link list + seal + address
+   --------------------------------------------------------------------------- */
+.footer .footer-wrapper > div:first-child {
+  background-color: #1b4d7c;
+  color: #fff;
+}
+
+.footer .footer-wrapper > div:first-child ul {
+  list-style: none;
+  margin: 0 auto 28px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 24px;
+}
+
+.footer .footer-wrapper > div:first-child ul li {
+  margin: 0;
+}
+
+.footer .footer-wrapper > div:first-child ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+}
+
+.footer .footer-wrapper > div:first-child ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Org block: seal (CSS ::before) sits to the left of the address text. */
+.footer .footer-org {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 24px;
+  padding-left: 100px;
+  min-height: 80px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+}
+
+.footer .footer-org::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 76px;
+  height: 76px;
+  background-image: url("https://beta.dol.gov/themes/custom/dolgov_uswds/logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: left top;
+  filter: brightness(0) invert(1);
 }
 
-.footer .footer-wrapper > div:first-child p strong {
-  font-size: 1.5625rem;
+.footer .footer-org strong {
+  display: block;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #fff;
-  display: block;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
-.footer .footer-wrapper > div:first-child a {
-  color: #dfe1e2;
+.footer .footer-org a {
+  color: #fff;
   text-decoration: none;
 }
 
-.footer .footer-wrapper > div:first-child a:hover {
+.footer .footer-org a:hover {
   text-decoration: underline;
 }
 
-.footer .footer-wrapper > div:first-child img,
-.footer .footer-wrapper > div:first-child picture img {
-  width: 120px;
-  height: auto;
-  max-width: 120px;
-}
-
-/* Right: Nav columns - the 3 h4+ul pairs are inside a single div */
+/* ---------------------------------------------------------------------------
+   Band 2: bottom — navy, secondary menu + social
+   --------------------------------------------------------------------------- */
 .footer .footer-wrapper > div:nth-child(2) {
-  padding-left: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  align-content: start;
-}
-
-@media (min-width: 768px) {
-  .footer .footer-wrapper > div:nth-child(2) {
-    padding-left: 30px;
-  }
-}
-
-/* Each h4 starts a new implicit column via CSS grid */
-.footer .footer-wrapper > div:nth-child(2) h4 {
+  background-color: #122e51;
   color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: "Source Sans Pro", sans-serif;
-  margin: 0 0 10px;
-  grid-column: auto;
 }
 
-/* Reports section (1st h4 + 1st ul) */
-.footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(1) { grid-column: 1; grid-row: 1; }
-.footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(1) { grid-column: 1; grid-row: 2; }
-
-/* Quick Links section (2nd h4 + 2nd ul) */
-.footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(2) { grid-column: 2; grid-row: 1; }
-.footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(2) { grid-column: 2; grid-row: 2; }
-
-/* Get In Touch section (3rd h4 + 3rd ul) */
-.footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(3) { grid-column: 3; grid-row: 1; }
-.footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(3) { grid-column: 3; grid-row: 2; }
-
-.footer ul {
+.footer .footer-wrapper > div:nth-child(2) > ul {
   list-style: none;
-  margin: 0;
+  margin: 0 auto 20px;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
 }
 
-.footer ul li {
-  margin-bottom: 8px;
+.footer .footer-wrapper > div:nth-child(2) > ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
 }
 
-.footer ul li a {
-  color: rgba(255, 255, 255, 0.8);
+.footer .footer-wrapper > div:nth-child(2) > ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer .footer-social-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 auto 10px;
+}
+
+.footer ul.footer-social {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer ul.footer-social li a {
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 14px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
 }
 
-.footer ul li a:hover {
+.footer ul.footer-social li a:hover {
   color: #fff;
   text-decoration: underline;
 }
 
-/* Copyright */
-.footer .footer-wrapper > p {
-  grid-column: 1 / -1;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 16px;
-  margin-top: 8px;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 13px;
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-/* Mobile: stack columns */
-@media (max-width: 599px) {
-  .footer .footer-wrapper > div:nth-child(2) {
-    grid-template-columns: 1fr;
+/* Mobile: stack link columns */
+@media (max-width: 767px) {
+  .footer .footer-wrapper > div {
+    padding: 32px 24px;
   }
 
-  .footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(1),
-  .footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(1),
-  .footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(2),
-  .footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(2),
-  .footer .footer-wrapper > div:nth-child(2) h4:nth-of-type(3),
-  .footer .footer-wrapper > div:nth-child(2) ul:nth-of-type(3) {
-    grid-column: 1;
-    grid-row: auto;
+  .footer .footer-wrapper > div:first-child ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer .footer-wrapper > div:first-child ul {
+    grid-template-columns: 1fr;
   }
 }

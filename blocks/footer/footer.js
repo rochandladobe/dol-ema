@@ -14,51 +14,52 @@ export default async function decorate(block) {
 
   if (!resp.ok) {
     const wrapper = document.createElement('div');
+    wrapper.classList.add('footer-wrapper');
     wrapper.innerHTML = `
       <div>
-        <p><img src="https://www.sss.gov/wp-content/themes/sss/assets/visuals/css-assets/sss-logo.svg" alt="Selective Service System Logo"></p>
-        <h3>SELECTIVE SERVICE SYSTEM</h3>
-        <p>Call: <a href="tel:847-688-6888">847-688-6888</a> or toll-free: <a href="tel:888-655-1825">888-655-1825</a></p>
-        <p>Hours of operation: 9:00 AM to 5:00 PM EST, Monday to Friday, except on federal holidays.</p>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/accessibility-statement">Accessibility Statement</a></li>
+          <li><a href="/general-disclaimer">Disclaimers</a></li>
+          <li><a href="https://www.disasterassistance.gov/">DisasterAssistance.gov</a></li>
+          <li><a href="https://www.dol.gov/general/disasterrecovery">Disaster Recovery Assistance</a></li>
+          <li><a href="/foia">Freedom of Information Act</a></li>
+          <li><a href="https://www.dol.gov/guidance">Guidance Search</a></li>
+          <li><a href="/important-website-notices">Important Website Notices</a></li>
+          <li><a href="/research-data/no-fear-act">No Fear Act Data</a></li>
+          <li><a href="https://www.oig.dol.gov/">Office of Inspector General</a></li>
+          <li><a href="/privacy-and-security-statement">Privacy &amp; Security Statement</a></li>
+          <li><a href="https://www.usa.gov/">USA.gov</a></li>
+          <li><a href="https://osc.gov/">U.S. Office of Special Counsel</a></li>
+          <li><a href="https://www.whitehouse.gov/">White House</a></li>
+        </ul>
+        <p class="footer-org">
+          <strong>U.S. DEPARTMENT OF LABOR</strong>
+          200 Constitution Ave NW<br>
+          Washington, DC 20210<br>
+          <a href="tel:1-866-487-2365">1-866-4-USA-DOL</a><br>
+          <a href="tel:1-866-487-2365">1-866-487-2365</a><br>
+          <a href="https://www.dol.gov">www.dol.gov</a>
+        </p>
       </div>
       <div>
-        <div class="columns"><div>
-          <div>
-            <h4>Reports</h4>
-            <ul>
-              <li><a href="/foia">FOIA (Freedom of Information Act)</a></li>
-              <li><a href="/reports/annual-reports-to-congress">Annual Reports</a></li>
-              <li><a href="/reports">Budget and Performance</a></li>
-              <li><a href="/data">Data</a></li>
-              <li><a href="/eeo">EEO Resources</a></li>
-              <li><a href="/reports/quality-of-information">Quality of Information</a></li>
-              <li><a href="/inspector-general">Inspector General</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="/careers">Careers and Internships</a></li>
-              <li><a href="/accessibility">Accessibility</a></li>
-              <li><a href="/privacy">Privacy Policy</a></li>
-              <li><a href="/terms-of-use">Terms of Use</a></li>
-              <li><a href="https://www.usa.gov/">USA.gov</a></li>
-              <li><a href="/selective-service-employees">Employees</a></li>
-              <li><a href="/vulnerability-disclosure-policy">Vulnerability Disclosure</a></li>
-              <li><a href="https://www.todaysmilitary.com/">Today's Military</a></li>
-              <li><a href="https://osc.gov/">U.S. Office of Special Counsel</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Get In Touch</h4>
-            <ul>
-              <li><a href="mailto:information@sss.gov">Email</a></li>
-              <li><a href="https://www.linkedin.com/company/selective-service-system/">LinkedIn</a></li>
-            </ul>
-          </div>
-        </div></div>
+        <ul>
+          <li><a href="https://www.dol.gov/general/contact">Contact Us</a></li>
+          <li><a href="https://www.dol.gov/general/jobs">Careers at DOL</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/about/agencies">Agencies</a></li>
+          <li><a href="https://www.dol.gov/general/faq">FAQ</a></li>
+        </ul>
+        <p class="footer-social-label">Stay connected</p>
+        <ul class="footer-social">
+          <li><a href="https://www.facebook.com/departmentoflabor">Facebook</a></li>
+          <li><a href="https://twitter.com/USDOL">X</a></li>
+          <li><a href="https://www.instagram.com/usdol/">Instagram</a></li>
+          <li><a href="https://www.youtube.com/user/USDepartmentofLabor">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/company/u-s-department-of-labor">LinkedIn</a></li>
+        </ul>
       </div>`;
-    block.append(...wrapper.children);
+    block.append(wrapper);
     return;
   }
 
