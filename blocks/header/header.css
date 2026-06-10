@@ -20,6 +20,46 @@ header .header {
 }
 
 /* ---------------------------------------------------------------------------
+   Countdown to America's 250th Anniversary strip (light blue, top-most)
+   --------------------------------------------------------------------------- */
+.usa-250 {
+  background-color: #c7e7f1;
+  color: #123c61;
+  font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.usa-250-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 24px;
+}
+
+.usa-250-logo {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.usa-250-text {
+  color: #123c61;
+}
+
+.usa-250-text a {
+  color: #123c61;
+  text-decoration: underline;
+}
+
+.usa-250-text a:hover {
+  color: #0c2742;
+}
+
+/* ---------------------------------------------------------------------------
    US Government banner strip
    --------------------------------------------------------------------------- */
 .usa-banner {
@@ -81,6 +121,50 @@ header .header {
   line-height: 1;
   color: #3a9fe0;
   text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.usa-banner-action[aria-expanded="true"] .usa-banner-arrow {
+  transform: rotate(180deg);
+}
+
+/* Expandable "Here's how you know" guidance panel */
+.usa-banner-content[hidden] {
+  display: none;
+}
+
+.usa-banner-content .usa-banner-inner {
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  padding-bottom: 20px;
+}
+
+.usa-banner-guidance {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 1 360px;
+  min-width: 280px;
+}
+
+.usa-banner-icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.usa-banner-guidance p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.usa-banner-guidance p strong {
+  color: #fff;
 }
 
 /* ---------------------------------------------------------------------------

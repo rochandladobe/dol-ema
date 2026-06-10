@@ -23,7 +23,29 @@ function isMobile() {
   return MOBILE_QUERY.matches;
 }
 
-/* Build the thin "official US government" banner strip. */
+/* Build the light-blue "Countdown to America's 250th Anniversary" strip.
+   America's 250th is July 4, 2026. */
+function buildCountdownBar() {
+  const bar = document.createElement('div');
+  bar.classList.add('usa-250');
+
+  const target = new Date('2026-07-04T00:00:00');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const days = Math.max(0, Math.round((target - today) / 86400000));
+  const dayLabel = days === 1 ? 'day' : 'days';
+
+  bar.innerHTML = `
+    <div class="usa-250-inner">
+      <img class="usa-250-logo" src="https://beta.dol.gov/system/files/media/2026-05/freedom250-blue-200x200.png" alt="Freedom 200" width="22" height="22">
+      <span class="usa-250-text">Countdown to
+        <a href="https://freedom250.org" target="_blank" rel="noopener noreferrer">America's 250th Anniversary</a>: ${days} ${dayLabel}</span>
+    </div>`;
+  return bar;
+}
+
+/* Build the thin "official US government" banner strip with expandable
+   "Here's how you know" content. */
 function buildUSABanner() {
   const banner = document.createElement('div');
   banner.classList.add('usa-banner');
@@ -35,11 +57,34 @@ function buildUSABanner() {
         <img class="usa-banner-flag" src="${flagSvg}" alt="U.S. flag" width="16" height="11">
         <span class="usa-banner-text">An official website of the United States government</span>
       </div>
-      <button type="button" class="usa-banner-action" aria-expanded="false">
+      <button type="button" class="usa-banner-action" aria-expanded="false" aria-controls="usa-banner-content">
         <span>Here's how you know</span>
         <span class="usa-banner-arrow" aria-hidden="true">&#9662;</span>
       </button>
+    </div>
+    <div class="usa-banner-content" id="usa-banner-content" hidden>
+      <div class="usa-banner-inner">
+        <div class="usa-banner-guidance">
+          <img class="usa-banner-icon" src="https://beta.dol.gov/themes/custom/dolgov_uswds/assets/img/icon-dot-gov.svg" alt="Dot gov" width="40" height="40">
+          <p><strong>Official websites use .gov</strong><br>
+            A <strong>.gov</strong> website belongs to an official government organization in the United States.</p>
+        </div>
+        <div class="usa-banner-guidance">
+          <img class="usa-banner-icon" src="https://beta.dol.gov/themes/custom/dolgov_uswds/assets/img/icon-https.svg" alt="Https" width="40" height="40">
+          <p><strong>Secure .gov websites use HTTPS</strong><br>
+            A <strong>lock</strong> or <strong>https://</strong> means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+        </div>
+      </div>
     </div>`;
+
+  const action = banner.querySelector('.usa-banner-action');
+  const content = banner.querySelector('.usa-banner-content');
+  action.addEventListener('click', () => {
+    const expanded = action.getAttribute('aria-expanded') === 'true';
+    action.setAttribute('aria-expanded', String(!expanded));
+    content.hidden = expanded;
+  });
+
   return banner;
 }
 
@@ -207,7 +252,10 @@ function buildHamburger() {
 export default async function decorate(block) {
   block.textContent = '';
 
-  // 1. Thin US government banner strip (kept verbatim).
+  // 1a. Light-blue countdown strip (top-most).
+  block.append(buildCountdownBar());
+
+  // 1b. Thin US government banner strip with expandable guidance.
   block.append(buildUSABanner());
 
   const navMeta = getMetadata('nav');
