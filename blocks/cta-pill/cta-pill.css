@@ -1,0 +1,43 @@
+/* cta-pill.css - DOL.gov "Looking for Something Else?" with a pill button. */
+.cta-pill-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.cta-pill-inner h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Merriweather", serif;
+  font-size: 2.44rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Transparent pill with a thin light outline (matches the source's inset
+   2px box-shadow ring). Override boilerplate button styling. */
+.cta-pill a.cta-pill-button,
+.cta-pill a.cta-pill-button:any-link {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: #dfe1e2;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 2px #dfe1e2;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.cta-pill a.cta-pill-button:hover,
+.cta-pill a.cta-pill-button:focus {
+  background-color: #fff;
+  color: #122e51;
+  box-shadow: inset 0 0 0 2px #fff;
+}
