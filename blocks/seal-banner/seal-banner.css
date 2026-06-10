@@ -1,0 +1,28 @@
+/* seal-banner.css - DOL.gov centered seal on a dark-blue band. */
+.seal-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seal-banner > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.seal-banner .seal-banner-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.seal-banner .seal-banner-image picture,
+.seal-banner .seal-banner-image img {
+  display: block;
+  max-width: 1216px;
+  width: 100%;
+  height: auto;
+}
