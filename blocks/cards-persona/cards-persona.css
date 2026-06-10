@@ -85,6 +85,20 @@
   transform: translateX(4px);
 }
 
+/* Wide variant ("Navigate Federal Labor Laws"): landscape 4:3 images,
+   wider/shorter than the portrait persona cards, smaller label. */
+.cards-persona.wide .cards-persona-image {
+  aspect-ratio: 4 / 3;
+}
+
+.cards-persona.wide .cards-persona-label {
+  font-size: 1.2rem;
+}
+
+.cards-persona.wide .cards-persona-arrow {
+  font-size: 1.2rem;
+}
+
 @media (max-width: 899px) {
   .cards-persona ul {
     grid-template-columns: 1fr 1fr;
