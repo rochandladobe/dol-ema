@@ -269,3 +269,51 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Fixed "Scroll to Top" button (follows the user as they scroll).
+   Default: white background + navy text/icon, navy border.
+   At the very bottom of the page: blue background + white text/icon.
+   --------------------------------------------------------------------------- */
+.scroll-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid #122e51;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #122e51;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.scroll-to-top.visible {
+  display: inline-flex;
+}
+
+.scroll-to-top-icon {
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* At the bottom of the page: blue background, white text/icon. */
+.scroll-to-top.at-bottom {
+  background-color: #296bae;
+  border-color: #296bae;
+  color: #fff;
+}
+
+.scroll-to-top:hover {
+  background-color: #122e51;
+  border-color: #122e51;
+  color: #fff;
+}

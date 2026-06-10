@@ -74,6 +74,41 @@ export default async function decorate(block) {
   block.append(footerWrapper);
 
   decorateExternalLinks(footerWrapper);
+  buildScrollToTop();
+}
+
+/* Fixed "Scroll to Top" button that follows the user as they scroll.
+   Default (not at the very bottom): white background, white-bordered.
+   At the bottom of the page: blue background. */
+function buildScrollToTop() {
+  if (document.querySelector('.scroll-to-top')) return;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'scroll-to-top';
+  btn.setAttribute('aria-label', 'Scroll to top');
+  btn.innerHTML = `
+    <span class="scroll-to-top-icon" aria-hidden="true">&#9650;</span>
+    <span class="scroll-to-top-label">Scroll to Top</span>`;
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.body.append(btn);
+
+  const update = () => {
+    const scrolled = window.scrollY || document.documentElement.scrollTop;
+    // Show only after the user scrolls down a bit.
+    btn.classList.toggle('visible', scrolled > 300);
+    // "at-bottom" when within 4px of the page bottom.
+    const atBottom = window.innerHeight + scrolled >= document.documentElement.scrollHeight - 4;
+    btn.classList.toggle('at-bottom', atBottom);
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
 }
 
 /* Open off-site links in a new tab and flag them with an icon.
