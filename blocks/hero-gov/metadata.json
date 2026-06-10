@@ -1,0 +1,40 @@
+{
+  "variantName": "hero-gov",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-06-03T18:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.sss.gov/",
+    "originPage": "homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "homepage-hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background-image + heading + paragraphs + 2 CTAs",
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "government website homepages",
+      "pages with patriotic dark blue hero banners",
+      "full-width hero with background photo and multiple paragraphs",
+      "pages requiring multiple CTA buttons in hero"
+    ],
+    "notSuitableFor": [
+      "interior content pages without hero imagery",
+      "minimal/compact page headers",
+      "light-themed hero sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 3,
+    "lastUsed": "2026-06-09T22:24:00.000Z"
+  }
+}

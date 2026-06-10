@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-feature",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-09T22:25:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://beta.dol.gov/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "image-cards",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "feature-image + linked title",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "audience/persona selectors with image + label that link to landing pages",
+      "topic or category grids with a feature photo and a short title",
+      "image-forward card grids on dark backgrounds",
+      "federal site navigation cards (4-up image link grids)"
+    ],
+    "notSuitableFor": [
+      "icon + description service cards (use cards-service)",
+      "single full-width banner (use hero-agency)",
+      "text-only cards with no images"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-09T22:25:00.000Z"
+  }
+}

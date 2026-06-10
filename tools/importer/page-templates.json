@@ -1,0 +1,20 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "url": "https://beta.dol.gov/",
+      "blocks": [
+        { "name": "hero-gov", "selector": ".hero, .usa-hero, [class*=hero]" },
+        { "name": "cards-feature", "selector": ".card-grid, .usa-card-group, [class*=card]" },
+        { "name": "hero-agency", "selector": ".agency-banner, [class*=banner]" }
+      ],
+      "urls": []
+    },
+    {
+      "name": "content-page",
+      "url": "https://beta.dol.gov/about",
+      "blocks": [],
+      "urls": []
+    }
+  ]
+}

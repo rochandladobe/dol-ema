@@ -1,0 +1,102 @@
+.columns-cta {
+  position: relative;
+}
+
+/* Vertical gradient divider lines framing the content (matches sss.gov
+   .hero__content-container::before/::after) — gray fading to transparent. */
+.columns-cta::before,
+.columns-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 140px;
+  background-image: linear-gradient(#999 0, rgba(153, 153, 153, 0) 100%);
+  z-index: 1;
+}
+
+.columns-cta::before {
+  left: 0;
+}
+
+.columns-cta::after {
+  right: 0;
+}
+
+.columns-cta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px 24px 40px;
+}
+
+.columns-cta > div > div:first-child {
+  flex: 1;
+}
+
+.columns-cta > div > div:first-child h2 {
+  font-family: "Merriweather", serif;
+  font-size: 31px;
+  font-weight: 300;
+  color: #122e51;
+  margin: 0 0 30px;
+}
+
+.columns-cta > div > div:first-child p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1b1b1b;
+}
+
+.columns-cta > div > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Body CTA buttons: pill-shaped, Source Sans Pro, matching sss.gov */
+.columns-cta > div > div:last-child a {
+  display: inline-block;
+  background-color: transparent;
+  background-image: linear-gradient(#122e51, #122e51);
+  color: #fff;
+  padding: 18px 36px;
+  border-radius: 9999px;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-image 0.15s ease;
+}
+
+.columns-cta > div > div:last-child a:hover {
+  background-image: linear-gradient(#122e51, #08111f);
+}
+
+/* The "Register Now" (red) primary CTA — second link in the column. */
+.columns-cta > div > div:last-child a[href*="/register" i]:not([href*="benefits" i]) {
+  background-image: linear-gradient(#94191f 0%, #651014 100%);
+  font-weight: 700;
+}
+
+.columns-cta > div > div:last-child a[href*="/register" i]:not([href*="benefits" i]):hover {
+  background-image: linear-gradient(#7d141a 0%, #4f0c0f 100%);
+}
+
+@media (width >= 900px) {
+  .columns-cta > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .columns-cta > div > div:last-child {
+    flex-direction: row;
+  }
+}
+
+}

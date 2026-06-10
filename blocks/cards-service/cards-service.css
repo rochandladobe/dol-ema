@@ -1,0 +1,114 @@
+/* cards-service.css - SSS.gov CTA grid cards */
+.cards-service > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 768px) {
+  .cards-service > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cards-service > ul > li {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 24px 32px 24px 0;
+  /* Faint gray divider for the light (white) section. The dark-section
+     override below switches these to faint white. */
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cards-service > ul > li:nth-child(odd) {
+  padding-right: 32px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.cards-service > ul > li:nth-child(even) {
+  padding-left: 32px;
+  padding-right: 0;
+}
+
+.cards-service > ul > li:nth-child(1),
+.cards-service > ul > li:nth-child(2) {
+  border-top: none;
+}
+
+/* Icon: left column, row 1 (aligned with title) */
+.cards-service > ul > li .cards-service-card-image {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.cards-service > ul > li .cards-service-card-image img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Body: right column, spans both rows so title sits next to icon and text below */
+.cards-service > ul > li .cards-service-card-body {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* Title next to icon */
+.cards-service > ul > li .cards-service-card-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  color: #1b1b1b;
+  margin: 0 0 8px;
+}
+
+.cards-service > ul > li .cards-service-card-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1b1b1b;
+  margin: 0 0 16px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.cards-service > ul > li .cards-service-card-body a {
+  display: inline-block;
+  background-color: transparent;
+  background-image: linear-gradient(#122e51, #122e51);
+  color: #fff;
+  padding: 18px 36px;
+  border-radius: 9999px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.1;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-image 0.15s ease;
+}
+
+.cards-service > ul > li .cards-service-card-body a:hover {
+  background-image: linear-gradient(#122e51, #08111f);
+}
+
+/* Dark section variant */
+.section.dark .cards-service > ul > li {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.section.dark .cards-service > ul > li .cards-service-card-body h3 {
+  color: #fff;
+}
+
+.section.dark .cards-service > ul > li .cards-service-card-body p {
+  color: rgba(255, 255, 255, 0.85);
+}

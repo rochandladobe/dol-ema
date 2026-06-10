@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-cta",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-06-03T18:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.sss.gov/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "content-cta",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + paragraph | buttons",
+    "buttonCount": 2,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "content sections with text on one side and action buttons on the other",
+      "introductory sections with heading, description, and CTAs",
+      "pages needing side-by-side text and button layout"
+    ],
+    "notSuitableFor": [
+      "image-heavy column layouts",
+      "multi-row column content",
+      "columns with more than 2 items"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-06-04T14:53:00.000Z"
+  }
+}

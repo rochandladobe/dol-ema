@@ -1,0 +1,40 @@
+{
+  "variantName": "hero-agency",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-06-09T22:25:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://beta.dol.gov/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "agency-banner",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background-image + overlaid heading-link",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "mid-page full-width promotional image banners with an overlaid heading",
+      "clickable image-link banners that navigate to a landing/listing page",
+      "single-image call-to-action sections without body text",
+      "dark-themed federal site banners"
+    ],
+    "notSuitableFor": [
+      "top-of-page hero with body paragraphs and multiple CTAs (use hero-gov)",
+      "repeating image grids (use cards-feature)",
+      "light-themed hero sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-06-09T22:25:00.000Z"
+  }
+}

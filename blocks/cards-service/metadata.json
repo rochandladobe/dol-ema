@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-service",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-06-03T18:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.sss.gov/",
+    "originPage": "homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "service-cards",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + heading + description + optional CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "service listing cards with icons",
+      "government service categories with descriptions",
+      "feature grids with icon + text + optional CTA",
+      "information cards for different user groups"
+    ],
+    "notSuitableFor": [
+      "photo-heavy cards with large images",
+      "product cards with pricing",
+      "cards requiring complex multi-element layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-06-04T14:53:00.000Z"
+  }
+}
