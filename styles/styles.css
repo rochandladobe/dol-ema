@@ -350,15 +350,17 @@ main .default-content-wrapper > p > a[href="#main-content"] {
   display: none;
 }
 
-/* Breadcrumb: first <ol> in the page body, rendered as a horizontal trail. */
+/* Breadcrumb: first <ol> in the page body, rendered as a horizontal trail.
+   Sits in its own row with equal space above/below so it reads centered. */
 main .default-content-wrapper > ol:first-of-type {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  min-height: 56px;
   gap: 4px 8px;
-  margin: 0 0 24px;
-  padding: 0;
+  margin: 0 0 8px;
+  padding: 16px 0;
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
   font-size: 15px;
   color: var(--text-color);
