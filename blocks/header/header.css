@@ -106,8 +106,8 @@ header .header {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 32px 24px;
-  min-height: 200px;
+  padding: 16px 24px;
+  min-height: 0;
   box-sizing: border-box;
 }
 
@@ -134,20 +134,22 @@ header .header {
 }
 
 .nav-brand-seal {
-  width: 120px;
-  height: 120px;
+  width: 56px;
+  height: 56px;
   flex: 0 0 auto;
   display: block;
+  /* DOL logo.svg ships in dark navy; force white so it reads on the navy bar. */
+  filter: brightness(0) invert(1);
 }
 
 .nav-brand-text {
   position: relative;
   display: block;
   font-family: "Merriweather", Georgia, "Times New Roman", serif;
-  font-size: 25px;
+  font-size: 19px;
   font-weight: 400;
-  line-height: 40px;
-  letter-spacing: 1.56px;
+  line-height: 28px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
   white-space: nowrap;

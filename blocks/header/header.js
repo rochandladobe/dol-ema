@@ -90,8 +90,8 @@ function decorateBrand(navBrand) {
     img.src = SEAL_LOGO_URL;
     img.alt = 'U.S. Department of Labor seal';
     img.classList.add('nav-brand-seal');
-    img.width = 120;
-    img.height = 120;
+    img.width = 56;
+    img.height = 56;
     img.loading = 'eager';
 
     link.textContent = '';
