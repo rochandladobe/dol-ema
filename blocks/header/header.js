@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-const SEAL_LOGO_URL = 'https://www.sss.gov/wp-content/themes/sss/assets/visuals/css-assets/sss-logo.svg';
+const SEAL_LOGO_URL = 'https://beta.dol.gov/themes/custom/dolgov_uswds/logo.svg';
 const MOBILE_QUERY = window.matchMedia('(max-width: 899px)');
 
 function getMetadata(name) {
@@ -88,7 +88,7 @@ function decorateBrand(navBrand) {
 
     const img = document.createElement('img');
     img.src = SEAL_LOGO_URL;
-    img.alt = 'Selective Service System seal';
+    img.alt = 'U.S. Department of Labor seal';
     img.classList.add('nav-brand-seal');
     img.width = 120;
     img.height = 120;
