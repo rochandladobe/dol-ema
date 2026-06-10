@@ -1,0 +1,9 @@
+/* brand-concierge.css - Brand Concierge widget mount container. */
+.brand-concierge {
+  width: 100%;
+}
+
+.brand-concierge #brand-concierge-mount {
+  width: 100%;
+  min-height: 600px;
+}
