@@ -23,18 +23,27 @@
   color: #fff;
 }
 
-/* Image with yellow hover overlay. */
+/* Image with yellow hover overlay. All cards share the Employer card's
+   portrait proportions (600 x 826) so heights match regardless of source. */
 .cards-persona-image {
   position: relative;
   overflow: hidden;
   line-height: 0;
+  aspect-ratio: 600 / 826;
 }
 
-.cards-persona-image picture,
+.cards-persona-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .cards-persona-image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .cards-persona-overlay {
@@ -62,11 +71,6 @@
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.25;
-}
-
-.cards-persona-card:hover .cards-persona-label,
-.cards-persona-card:focus-visible .cards-persona-label {
-  text-decoration: underline;
 }
 
 .cards-persona-arrow {
