@@ -198,33 +198,6 @@ main .section.hero-gov-container {
   margin-left: calc(50% - 50vw);
 }
 
-/* The white "Registration for Men" section directly follows the hero on the
-   homepage. Pull it up so it overlaps into the navy hero (matches sss.gov,
-   where .hero__container uses padding-bottom:250px + margin-bottom:-200px so
-   the white card rises into the blue and the red swoosh sits on the seam). */
-main .section.hero-gov-container + .section:not(.dark) {
-  position: relative;
-  z-index: 1;
-  margin-top: -160px;
-}
-
-/* Red swoosh wave sits above "Registration for Men" white section.
-   Positioned as a ::before on the section so it always sits right above
-   the content regardless of overlap amount. */
-main .section.hero-gov-container + .section:not(.dark)::before {
-  content: "";
-  position: absolute;
-  top: -55px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1104px;
-  max-width: calc(100% - 96px);
-  height: 80px;
-  background: url("https://www.sss.gov/wp-content/themes/sss/assets/visuals/css-assets/top-curve.svg") 50% 100% / contain no-repeat;
-  z-index: 2;
-  pointer-events: none;
-}
-
 /* Additional Groups (dark) section: full-bleed navy too. */
 main .section.dark {
   max-width: none;

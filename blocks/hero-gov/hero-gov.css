@@ -1,4 +1,5 @@
-/* hero-gov.css - SSS.gov homepage hero */
+/* hero-gov.css - DOL.gov homepage hero: full-bleed banner photo with
+   the page title overlaid at left, vertically centered. */
 .hero-gov-container .hero-gov-wrapper {
   max-width: unset;
   padding: 0;
@@ -6,172 +7,77 @@
 
 .hero-gov {
   position: relative;
-  min-height: 0;
   display: flex;
   align-items: center;
-  background-color: #122e51;
+  min-height: 520px;
   overflow: hidden;
+  background-color: #122e51;
 }
 
-/* Wave/swoosh moved to styles.css (white section ::before) so it always
-   sits above "Registration for Men" regardless of overlap amount. */
-.hero-gov::after {
-  display: none;
+/* The authored picture becomes the full-bleed background image. */
+.hero-gov > div > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
 }
 
+.hero-gov > div > div:first-child picture,
+.hero-gov > div > div:first-child img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* Dark gradient overlay so the white title stays legible over the photo. */
+.hero-gov::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(10, 24, 43, 0.75) 0%, rgba(10, 24, 43, 0.45) 45%, rgba(10, 24, 43, 0) 75%);
+  pointer-events: none;
+}
+
+/* Content row sits above the image + overlay. */
 .hero-gov > div {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  min-height: 0;
   margin: 0 auto;
-  padding: 60px 24px 260px;
-  position: relative;
-  z-index: 1;
-  /* Source PNG (transparent students + flag stars) as the container background,
-     sized `contain` and anchored right-center exactly like sss.gov. This makes
-     the image fill the full hero height (~720px) so the students are large.
-     The raw PNG preserves transparency — the AEM webply pipeline flattens alpha
-     to white, which would render as a white block on the navy hero. */
-  background: url("https://www.sss.gov/wp-content/uploads/2025/02/hero-bg.png") right bottom / contain no-repeat;
+  padding: 80px 48px;
 }
 
-/* Text content - left side; sits above the background image */
+/* Title cell (last child). */
 .hero-gov > div > div:last-child {
-  flex: 0 0 55%;
   max-width: 600px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Hide the DA-injected webp/png picture (alpha flattened); CSS bg replaces it. */
-.hero-gov > div > div:first-child {
-  display: none;
 }
 
 .hero-gov h1 {
   color: #fff;
   font-family: "Merriweather", serif;
-  font-size: 2.44rem;
-  font-weight: 300;
-  line-height: 1.2;
-  margin: 0 0 24px;
-}
-
-.hero-gov p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0 0 12px;
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-.hero-gov a {
-  display: inline-block;
-  font-size: 16px;
+  font-size: 3.125rem;
   font-weight: 700;
-  font-family: "Source Sans Pro", sans-serif;
-  padding: 14px 32px;
-  border-radius: 4px;
-  text-decoration: none;
-  margin-right: 12px;
-  margin-top: 12px;
-}
-
-.hero-gov a:first-of-type,
-.hero-gov p:last-child a:first-child {
-  background-color: #d83933;
-  color: #fff;
-  border: 2px solid #d83933;
-}
-
-.hero-gov a:first-of-type:hover {
-  background-color: #b51d09;
-}
-
-.hero-gov p:last-child a:last-child,
-.hero-gov a:nth-of-type(2) {
-  background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-}
-
-.hero-gov p:last-child a:last-child:hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* -------------------------------------------------------
-   COMPACT INNER-PAGE HERO: hero-gov block WITHOUT an image
-   (inner pages that use the hero-gov block but have no picture)
-   ------------------------------------------------------- */
-.hero-gov.no-image {
-  min-height: 0;
-  align-items: stretch;
-  overflow: visible;
-}
-
-/* Hide the swoosh curve on no-image hero */
-.hero-gov.no-image::after {
-  display: none;
-}
-
-/* Compact layout for no-image hero content */
-.hero-gov.no-image > div {
-  flex-direction: column;
-  justify-content: center;
-  padding: 35px 48px 40px;
-  max-width: 1200px;
-}
-
-/* On no-image hero, the text cell is the only/last child */
-.hero-gov.no-image > div > div:last-child {
-  flex: unset;
-  max-width: none;
-}
-
-/* Title inside no-image hero */
-.hero-gov.no-image > div > div > p,
-.hero-gov.no-image > div > div {
-  font-family: "Merriweather", serif;
-  font-size: 1.95rem;
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.3;
+  line-height: 1.2;
   margin: 0;
-  position: relative;
-}
-
-/* White underline rule beneath the title */
-.hero-gov.no-image > div > div > p::after,
-.hero-gov.no-image > div > div:only-child::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.4);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 899px) {
-  .hero-gov > div > div:first-child {
-    display: none;
+  .hero-gov {
+    min-height: 360px;
   }
 
-  .hero-gov > div > div:last-child {
-    flex: 1;
-    max-width: 100%;
+  .hero-gov > div {
+    padding: 48px 24px;
   }
 
   .hero-gov h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-gov.no-image > div {
-    padding: 28px 24px 32px;
+    font-size: 2rem;
   }
 }
-
