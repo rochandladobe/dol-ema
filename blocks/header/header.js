@@ -167,15 +167,13 @@ function decorateSections(navSections) {
   });
 }
 
-/* Decorate the two CTA links as primary / outline buttons. */
+/* Decorate the tools links as plain text links (e.g. Contact Us). */
 function decorateTools(navTools) {
   if (!navTools) return;
   stripButtonClasses(navTools);
 
-  const links = navTools.querySelectorAll('a');
-  links.forEach((link, i) => {
-    link.classList.add('nav-tool-btn');
-    link.classList.add(i === 0 ? 'nav-tool-primary' : 'nav-tool-outline');
+  navTools.querySelectorAll('a').forEach((link) => {
+    link.classList.add('nav-tool-link');
   });
 }
 
