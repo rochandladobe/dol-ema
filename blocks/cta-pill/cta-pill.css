@@ -17,6 +17,8 @@
 
 /* Transparent pill with a thin light outline (matches the source's inset
    2px box-shadow ring). Override boilerplate button styling. */
+main .section.dark .cta-pill a.cta-pill-button,
+main .section.dark .cta-pill a.cta-pill-button:any-link,
 .cta-pill a.cta-pill-button,
 .cta-pill a.cta-pill-button:any-link {
   display: inline-flex;
@@ -35,6 +37,8 @@
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
+main .section.dark .cta-pill a.cta-pill-button:hover,
+main .section.dark .cta-pill a.cta-pill-button:focus,
 .cta-pill a.cta-pill-button:hover,
 .cta-pill a.cta-pill-button:focus {
   background-color: #fff;
