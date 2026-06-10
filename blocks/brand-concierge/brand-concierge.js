@@ -17,7 +17,7 @@ const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.30.1-beta.15/alloy.mi
 const BC_CLIENT_SRC = 'https://experience-stage.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
 
 const DEFAULTS = {
-  datastreamId: 'YOUR_DATASTREAM_ID',
+  datastreamId: '123e4567-e89b-12d3-a456-426614174000',
   orgId: '0F211E64690BA86B0A494136@AdobeOrg',
   edgeDomain: 'edge-int.adobedc.net',
   edgeBasePath: 'ee',
