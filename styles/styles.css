@@ -339,3 +339,59 @@ main > div.section:first-of-type:not(.hero-gov-container) {
   }
 }
 
+/* =============================================================
+   MIGRATED INNER PAGES: breadcrumb + section header
+   The imported pages start with a "Skip to main content" link,
+   a breadcrumb <ol>, "Share this page" + share <ul>, then the H1.
+   ============================================================= */
+
+/* Hide the leftover "Skip to main content" anchor in the content body. */
+main .default-content-wrapper > p > a[href="#main-content"] {
+  display: none;
+}
+
+/* Breadcrumb: first <ol> in the page body, rendered as a horizontal trail. */
+main .default-content-wrapper > ol:first-of-type {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+main .default-content-wrapper > ol:first-of-type li {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* "»" separator after every item except the last (current page). */
+main .default-content-wrapper > ol:first-of-type li:not(:last-child)::after {
+  content: "»";
+  margin-left: 8px;
+  color: var(--color-gray);
+}
+
+main .default-content-wrapper > ol:first-of-type li a {
+  color: var(--color-blue);
+  text-decoration: underline;
+}
+
+main .default-content-wrapper > ol:first-of-type li a:hover {
+  color: var(--color-blue-dark);
+}
+
+/* Section header (page title) on migrated inner pages. */
+main .default-content-wrapper > h1 {
+  color: #123c61;
+  font-family: "Merriweather", serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 24px;
+}
+
