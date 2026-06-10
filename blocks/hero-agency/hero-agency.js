@@ -1,16 +1,22 @@
-/*
- * Copyright 2025 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
 export default function decorate(block) {
-  if (!block.querySelector(':scope > div:first-child picture')) {
+  const picture = block.querySelector('picture');
+  const link = block.querySelector('a');
+  const href = link ? link.getAttribute('href') : null;
+  const label = link ? link.textContent.trim() : '';
+
+  if (!picture) {
     block.classList.add('no-image');
+    return;
   }
+
+  // Render as a single full-width linked banner image (the heading, yellow
+  // box, and arrow are baked into the source PNG).
+  const banner = document.createElement('a');
+  banner.className = 'hero-agency-banner';
+  if (href) banner.href = href;
+  if (label) banner.setAttribute('aria-label', label);
+  banner.append(picture);
+
+  block.textContent = '';
+  block.append(banner);
 }
