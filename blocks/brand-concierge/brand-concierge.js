@@ -18,7 +18,7 @@ const BC_CLIENT_SRC = 'https://experience-stage.adobe.net/solutions/experience-p
 
 const DEFAULTS = {
   datastreamId: '625db853-87ee-42fc-a09d-1141472be233',
-  orgId: '0F211E64690BA86B0A494136@AdobeOrg',
+  orgId: '0E061E2D61F93F260A495FD6@AdobeOrg',
   edgeDomain: 'edge-int.adobedc.net',
   edgeBasePath: 'ee',
 };
