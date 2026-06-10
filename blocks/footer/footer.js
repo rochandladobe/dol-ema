@@ -72,4 +72,30 @@ export default async function decorate(block) {
   footerWrapper.classList.add('footer-wrapper');
   footerWrapper.innerHTML = html;
   block.append(footerWrapper);
+
+  decorateExternalLinks(footerWrapper);
+}
+
+/* Open off-site links in a new tab and flag them with an icon.
+   The last list in the bottom band is the social row — skip it so its
+   branded links stay clean. */
+function decorateExternalLinks(scope) {
+  const bands = scope.querySelectorAll(':scope > div');
+  const socialList = bands.length ? bands[bands.length - 1].querySelector(':scope > ul:last-of-type') : null;
+
+  scope.querySelectorAll('a[href^="http"]').forEach((link) => {
+    let isExternal = false;
+    try {
+      isExternal = new URL(link.href).origin !== window.location.origin;
+    } catch (e) {
+      isExternal = false;
+    }
+    if (!isExternal) return;
+
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+
+    if (socialList && socialList.contains(link)) return;
+    link.classList.add('footer-external-link');
+  });
 }

@@ -63,27 +63,40 @@
   text-decoration: underline;
 }
 
-/* Department-info column (last <p> in band 1): text left, seal right. */
+/* External-link indicator: small box-with-arrow icon after the link text. */
+.footer a.footer-external-link::after {
+  content: "";
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 4px;
+  vertical-align: baseline;
+  background-color: currentcolor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+/* Department-info column (last <p> in band 1): logo on top, text below. */
 .footer .footer-wrapper > div:first-child > p {
   position: relative;
-  padding-right: 92px;
+  padding-top: 96px;
   color: #fff;
   font-size: 14px;
   line-height: 1.6;
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
 }
 
-.footer .footer-wrapper > div:first-child > p::after {
+.footer .footer-wrapper > div:first-child > p::before {
   content: "";
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   width: 80px;
   height: 80px;
   background-image: url("https://beta.dol.gov/system/files/media/2025-07/DOL-logo-white-80px.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right top;
+  background-position: left top;
 }
 
 .footer .footer-wrapper > div:first-child > p strong {
