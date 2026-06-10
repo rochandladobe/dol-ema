@@ -37,7 +37,7 @@
 }
 
 .footer .footer-wrapper > div:first-child > ul,
-.footer .footer-wrapper > div:first-child > .footer-org {
+.footer .footer-wrapper > div:first-child > p {
   max-width: none;
   margin: 0;
 }
@@ -63,8 +63,8 @@
   text-decoration: underline;
 }
 
-/* Department-info column: text on the left, seal on the right. */
-.footer .footer-org {
+/* Department-info column (last <p> in band 1): text left, seal right. */
+.footer .footer-wrapper > div:first-child > p {
   position: relative;
   padding-right: 92px;
   color: #fff;
@@ -73,7 +73,7 @@
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
 }
 
-.footer .footer-org::after {
+.footer .footer-wrapper > div:first-child > p::after {
   content: "";
   position: absolute;
   right: 0;
@@ -86,7 +86,7 @@
   background-position: right top;
 }
 
-.footer .footer-org strong {
+.footer .footer-wrapper > div:first-child > p strong {
   display: block;
   font-size: 1.125rem;
   font-weight: 700;
@@ -94,12 +94,12 @@
   margin-bottom: 6px;
 }
 
-.footer .footer-org a {
+.footer .footer-wrapper > div:first-child > p a {
   color: #fff;
   text-decoration: none;
 }
 
-.footer .footer-org a:hover {
+.footer .footer-wrapper > div:first-child > p a:hover {
   text-decoration: underline;
 }
 
@@ -113,7 +113,7 @@
 
 .footer .footer-wrapper > div:nth-child(2) > ul {
   list-style: none;
-  margin: 0 auto 20px;
+  margin: 0 0 16px;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -123,8 +123,7 @@
 .footer .footer-wrapper > div:nth-child(2) > ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
 }
 
@@ -132,34 +131,20 @@
   text-decoration: underline;
 }
 
-.footer .footer-social-label {
+/* First menu ul: bold secondary links */
+.footer .footer-wrapper > div:nth-child(2) > ul:first-of-type li a {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* "Stay connected" label (the <p> in band 2) */
+.footer .footer-wrapper > div:nth-child(2) > p {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #fff;
-  margin: 0 auto 10px;
-}
-
-.footer ul.footer-social {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.footer ul.footer-social li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
-}
-
-.footer ul.footer-social li a:hover {
-  color: #fff;
-  text-decoration: underline;
+  margin: 0 0 10px;
 }
 
 /* Tablet: 2 link columns + org wraps to next row */
@@ -174,7 +159,7 @@
     padding-inline: 24px;
   }
 
-  .footer .footer-org {
+  .footer .footer-wrapper > div:first-child > p {
     grid-column: 1 / -1;
     padding-top: 8px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
