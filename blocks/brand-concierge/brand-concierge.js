@@ -21,6 +21,8 @@ const DEFAULTS = {
   orgId: '0E061E2D61F93F260A495FD6@AdobeOrg',
   edgeDomain: 'edge.adobedc.net',
   edgeBasePath: 'ee',
+  conciergeId: '696aa1225a67ec1d4d6f59f7',
+  sandboxName: 'prod',
 };
 
 const STYLE_CONFIG = {
@@ -126,6 +128,10 @@ export default async function decorate(block) {
     window.adobe.concierge.bootstrap({
       instanceName: 'alloy',
       selector: '#brand-concierge-mount',
+      conciergeId: config.conciergeId,
+      datastreamId: config.datastreamId,
+      orgId: config.orgId,
+      sandboxName: config.sandboxName,
       stylingConfigurations: window.styleConfiguration,
     });
   } catch (e) {
