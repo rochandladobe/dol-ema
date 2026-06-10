@@ -227,12 +227,33 @@ function decorateSections(navSections) {
         closeAllDropdowns(navSections, li);
         li.classList.toggle('open', !isOpen);
         toggle.setAttribute('aria-expanded', String(!isOpen));
+        if (!isOpen) positionMenu(li, menu);
       });
+
+      // Keep the panel anchored under its toggle but nudged left when it
+      // would overflow the right edge of the viewport (desktop hover).
+      li.addEventListener('mouseenter', () => positionMenu(li, menu));
     } else {
       // Plain link item.
       li.classList.add('nav-item');
     }
   });
+}
+
+/* Anchor the mega-menu under its toggle, shifting it left if it would
+   overflow the right viewport edge so it never falls off the page. */
+function positionMenu(li, menu) {
+  if (isMobile()) {
+    menu.style.left = '';
+    return;
+  }
+  menu.style.left = '0px';
+  const margin = 16;
+  const rect = menu.getBoundingClientRect();
+  const overflow = rect.right - (window.innerWidth - margin);
+  if (overflow > 0) {
+    menu.style.left = `${-overflow}px`;
+  }
 }
 
 /* Decorate the tools links as plain text links (e.g. Contact Us). */
