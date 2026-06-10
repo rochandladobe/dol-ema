@@ -25,11 +25,24 @@ const DEFAULTS = {
   sandboxName: 'prod',
 };
 
+/* The BC web client calls getText() for every one of these keys during
+   render; a missing key throws and aborts rendering. Provide them all. */
 const STYLE_CONFIG = {
   text: {
-    'welcome.heading': 'Ask us anything',
-    'welcome.subheading': 'Get guided answers from Brand Concierge',
     'input.placeholder': 'Type your question...',
+    'input.send.aria': 'Send message',
+    'input.mic.aria': 'Use microphone',
+    'input.messageInput.aria': 'Message input',
+    'input.message_input.aria': 'Message input',
+    'input.clearHistory.aria': 'Clear chat history',
+    'input.clearHistory.label': 'Clear history',
+    'carousel.next.aria': 'Next',
+    'carousel.prev.aria': 'Previous',
+    'scroll.bottom.aria': 'Scroll to latest message',
+    'feedback.dialog.cancel': 'Cancel',
+    'feedback.dialog.notes': 'Additional notes',
+    'feedback.dialog.submit': 'Submit',
+    'feedback.toast.success': 'Thank you for your feedback',
   },
 };
 
