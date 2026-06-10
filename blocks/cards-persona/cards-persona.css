@@ -1,0 +1,94 @@
+/* cards-persona.css - DOL.gov "I Am A..." persona cards on navy.
+   Each card: linked image with a yellow hover overlay, then a white
+   linked label with a yellow arrow to its right. */
+.cards-persona ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.cards-persona li {
+  margin: 0;
+  display: flex;
+}
+
+.cards-persona-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Image with yellow hover overlay. */
+.cards-persona-image {
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.cards-persona-image picture,
+.cards-persona-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cards-persona-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(248, 204, 70, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.cards-persona-card:hover .cards-persona-overlay,
+.cards-persona-card:focus-visible .cards-persona-overlay {
+  opacity: 1;
+}
+
+/* White linked label with yellow arrow. */
+.cards-persona-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: #fff;
+  font-family: "Merriweather", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cards-persona-card:hover .cards-persona-label,
+.cards-persona-card:focus-visible .cards-persona-label {
+  text-decoration: underline;
+}
+
+.cards-persona-arrow {
+  color: #f8cc46;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.cards-persona-card:hover .cards-persona-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 899px) {
+  .cards-persona ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 479px) {
+  .cards-persona ul {
+    grid-template-columns: 1fr;
+  }
+}
