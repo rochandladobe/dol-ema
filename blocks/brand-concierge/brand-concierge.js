@@ -102,10 +102,6 @@ export default async function decorate(block) {
       edgeDomain: config.edgeDomain,
       edgeBasePath: config.edgeBasePath,
       debugEnabled: true,
-      conversation: {
-        stickyConversationSession: true,
-        collectSources: true,
-      },
       onBeforeEventSend: (options) => {
         options.xdm = options.xdm || {};
         options.xdm.web = options.xdm.web || {};
