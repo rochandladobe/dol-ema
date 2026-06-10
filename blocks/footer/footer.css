@@ -67,7 +67,7 @@
 .footer .footer-org {
   position: relative;
   padding-right: 92px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #fff;
   font-size: 14px;
   line-height: 1.6;
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
@@ -78,13 +78,12 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 76px;
-  height: 76px;
-  background-image: url("https://beta.dol.gov/themes/custom/dolgov_uswds/logo.svg");
+  width: 80px;
+  height: 80px;
+  background-image: url("https://beta.dol.gov/system/files/media/2025-07/DOL-logo-white-80px.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right top;
-  filter: brightness(0) invert(1);
 }
 
 .footer .footer-org strong {
@@ -138,7 +137,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
   margin: 0 auto 10px;
 }
 
@@ -152,7 +151,7 @@
 }
 
 .footer ul.footer-social li a {
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
   font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
