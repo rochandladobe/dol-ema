@@ -157,9 +157,10 @@ function decorateSections(navSections) {
     // so look for <strong> as a direct child OR inside a direct-child <p>.
     const strong = li.querySelector(':scope > strong, :scope > p > strong');
     const submenu = li.querySelector(':scope > ul');
+    const description = [...li.querySelectorAll(':scope > p')].find((p) => !p.querySelector('strong, a'));
     // Plain links may also be wrapped in a <p>; unwrap them for consistent layout.
     const plainP = li.querySelector(':scope > p > a');
-    if (plainP && !submenu) {
+    if (plainP && !submenu && !strong) {
       const wrapperP = plainP.closest('p');
       if (wrapperP && wrapperP.parentElement === li) {
         wrapperP.replaceWith(plainP);
@@ -167,8 +168,12 @@ function decorateSections(navSections) {
     }
 
     if (strong && submenu) {
-      // Dropdown item.
+      // Dropdown (mega-menu) item.
       li.classList.add('nav-drop');
+
+      const labelText = strong.textContent.trim();
+      const labelLink = strong.querySelector('a');
+      const sectionHref = labelLink ? labelLink.getAttribute('href') : null;
 
       const toggle = document.createElement('button');
       toggle.type = 'button';
@@ -178,7 +183,7 @@ function decorateSections(navSections) {
 
       const label = document.createElement('span');
       label.classList.add('nav-drop-label');
-      label.textContent = strong.textContent.trim();
+      label.textContent = labelText;
 
       const chevron = document.createElement('span');
       chevron.classList.add('nav-drop-chevron');
@@ -187,15 +192,33 @@ function decorateSections(navSections) {
 
       toggle.append(label, chevron);
 
-      submenu.classList.add('nav-drop-menu');
+      // Build the mega-menu panel: intro (left) + links (right).
+      const menu = document.createElement('div');
+      menu.classList.add('nav-drop-menu');
 
-      // If <strong> is wrapped in a <p>, replace the whole <p>; otherwise replace <strong>.
-      const strongWrapper = strong.closest('p');
-      if (strongWrapper && strongWrapper.parentElement === li) {
-        strongWrapper.replaceWith(toggle);
-      } else {
-        strong.replaceWith(toggle);
+      const intro = document.createElement('div');
+      intro.classList.add('nav-drop-intro');
+      const introTitle = document.createElement('a');
+      introTitle.classList.add('nav-drop-intro-title');
+      introTitle.textContent = labelText;
+      if (sectionHref) introTitle.href = sectionHref;
+      intro.append(introTitle);
+      if (description) {
+        const desc = document.createElement('p');
+        desc.classList.add('nav-drop-intro-desc');
+        desc.textContent = description.textContent.trim();
+        intro.append(desc);
       }
+
+      submenu.classList.add('nav-drop-links');
+      menu.append(intro, submenu);
+
+      // Replace original label/description with the toggle, then append the menu.
+      const strongWrapper = strong.closest('p') && strong.closest('p').parentElement === li
+        ? strong.closest('p') : strong;
+      strongWrapper.replaceWith(toggle);
+      if (description && description.parentElement === li) description.remove();
+      li.append(menu);
 
       toggle.addEventListener('click', (e) => {
         e.preventDefault();
