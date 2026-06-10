@@ -23,11 +23,15 @@ export default async function decorate(block) {
           <li><a href="/general-disclaimer">Disclaimers</a></li>
           <li><a href="https://www.disasterassistance.gov/">DisasterAssistance.gov</a></li>
           <li><a href="https://www.dol.gov/general/disasterrecovery">Disaster Recovery Assistance</a></li>
+        </ul>
+        <ul>
           <li><a href="/foia">Freedom of Information Act</a></li>
           <li><a href="https://www.dol.gov/guidance">Guidance Search</a></li>
           <li><a href="/important-website-notices">Important Website Notices</a></li>
           <li><a href="/research-data/no-fear-act">No Fear Act Data</a></li>
           <li><a href="https://www.oig.dol.gov/">Office of Inspector General</a></li>
+        </ul>
+        <ul>
           <li><a href="/privacy-and-security-statement">Privacy &amp; Security Statement</a></li>
           <li><a href="https://www.usa.gov/">USA.gov</a></li>
           <li><a href="https://osc.gov/">U.S. Office of Special Counsel</a></li>
