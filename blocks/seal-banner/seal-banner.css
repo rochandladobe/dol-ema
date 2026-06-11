@@ -1,4 +1,10 @@
 /* seal-banner.css - DOL.gov centered seal on a dark-blue band. */
+
+/* Tighten the space below the seal so it sits closer to the next section. */
+main .section.dark.seal-banner-container {
+  padding-bottom: 16px;
+}
+
 .seal-banner {
   display: flex;
   justify-content: center;
