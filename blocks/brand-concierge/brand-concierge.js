@@ -13,14 +13,15 @@
  *   | orgId           | <org>@AdobeOrg |
  */
 
-const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.30.1-beta.15/alloy.min.js';
-const BC_CLIENT_SRC = 'https://experience-stage.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
+const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.34.0/alloy.min.js';
+const BC_CLIENT_SRC = 'https://experience.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
 
 const DEFAULTS = {
   datastreamId: '2ade4e33-1104-465d-ae48-671143b71614',
   orgId: '0E061E2D61F93F260A495FD6@AdobeOrg',
   edgeDomain: 'edge.adobedc.net',
   edgeBasePath: 'ee',
+  region: 'va7',
   conciergeId: '6a2ac78e507e5a6498ba3933',
   sandboxName: 'us-public-sector-sc',
 };
@@ -140,12 +141,11 @@ export default async function decorate(block) {
         edgeDomain: config.edgeDomain,
         edgeBasePath: config.edgeBasePath,
         debugEnabled: true,
-        onBeforeEventSend: (options) => {
-          options.xdm = options.xdm || {};
-          options.xdm.web = options.xdm.web || {};
-          options.xdm.web.webPageDetails = options.xdm.web.webPageDetails || {};
-          options.xdm.web.webPageDetails.name = document.title || 'eds-brand-concierge-demo';
-          return true;
+        idMigrationEnabled: false,
+        thirdPartyCookiesEnabled: false,
+        prehidingStyle: '.personalization-container { opacity: 0 !important }',
+        conversation: {
+          region: config.region,
         },
       });
       window.alloy('sendEvent', {});
@@ -159,11 +159,8 @@ export default async function decorate(block) {
       window.adobe.concierge.bootstrap({
         instanceName: 'alloy',
         selector: '#brand-concierge-mount',
-        conciergeId: config.conciergeId,
-        datastreamId: config.datastreamId,
-        orgId: config.orgId,
-        sandboxName: config.sandboxName,
         stylingConfigurations: window.styleConfiguration,
+        stickySession: false,
       });
     } catch (e) {
       bcStarted = false;
