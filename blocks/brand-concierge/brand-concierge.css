@@ -142,6 +142,22 @@ main .section.brand-concierge-container:not(.dark):not(.hero-gov-container) {
   flex: 1 1 auto;
 }
 
+/* Sent/received message bubbles: don't let a short message (e.g. "hi")
+   collapse to one character per line. Let the bubble size to its content
+   and wrap only on whole words. */
+.bc-mount .chat-history .message,
+.bc-mount .message-text,
+.bc-mount .message-body-with-icon,
+.bc-mount [class*="message"] {
+  min-width: 0;
+  width: auto;
+  max-width: 100%;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  writing-mode: horizontal-tb;
+}
+
 /* Mobile: panel fills most of the viewport. */
 @media (max-width: 599px) {
   .bc-panel {
