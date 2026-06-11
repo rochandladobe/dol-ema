@@ -6,6 +6,14 @@
   height: 0;
 }
 
+/* Collapse the host section so it leaves no empty white row in the page
+   flow (the launcher/panel are position:fixed). */
+main .section.brand-concierge-container {
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+}
+
 /* ---------------------------------------------------------------------------
    Floating launcher button (bottom-left)
    --------------------------------------------------------------------------- */
