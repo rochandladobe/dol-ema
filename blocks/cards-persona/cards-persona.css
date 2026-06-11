@@ -15,7 +15,8 @@
   display: flex;
 }
 
-.cards-persona-card {
+.cards-persona a.cards-persona-card,
+.cards-persona a.cards-persona-card:any-link {
   display: flex;
   flex-direction: column;
   width: 100%;
