@@ -17,12 +17,12 @@ const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.30.1-beta.15/alloy.mi
 const BC_CLIENT_SRC = 'https://experience-stage.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
 
 const DEFAULTS = {
-  datastreamId: '625db853-87ee-42fc-a09d-1141472be233',
+  datastreamId: '2ade4e33-1104-465d-ae48-671143b71614',
   orgId: '0E061E2D61F93F260A495FD6@AdobeOrg',
   edgeDomain: 'edge.adobedc.net',
   edgeBasePath: 'ee',
-  conciergeId: '696aa1225a67ec1d4d6f59f7',
-  sandboxName: 'prod',
+  conciergeId: '6a2ac78e507e5a6498ba3933',
+  sandboxName: 'us-public-sector-sc',
 };
 
 /* The BC web client calls getText() for every one of these keys during
