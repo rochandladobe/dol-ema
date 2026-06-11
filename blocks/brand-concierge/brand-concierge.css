@@ -1,9 +1,119 @@
-/* brand-concierge.css - Brand Concierge widget mount container. */
+/* brand-concierge.css - floating launcher (bottom-left) + chat panel. */
+
+/* The block itself takes no layout space; its children are fixed. */
 .brand-concierge {
-  width: 100%;
+  width: 0;
+  height: 0;
 }
 
-.brand-concierge #brand-concierge-mount {
+/* ---------------------------------------------------------------------------
+   Floating launcher button (bottom-left)
+   --------------------------------------------------------------------------- */
+.bc-launcher {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 9999px;
+  background-color: #296bae;
+  color: #fff;
+  font-family: "Source Sans Pro", "Source Sans 3", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.bc-launcher:hover {
+  background-color: #1a4480;
+  transform: translateY(-1px);
+}
+
+.bc-launcher-icon {
+  display: inline-flex;
+}
+
+.bc-launcher.bc-open .bc-launcher-label {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Chat panel (floats above the launcher, bottom-left)
+   --------------------------------------------------------------------------- */
+.bc-panel {
+  position: fixed;
+  left: 24px;
+  bottom: 90px;
+  z-index: 1001;
+  width: min(400px, calc(100vw - 48px));
+  height: min(620px, calc(100vh - 140px));
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.bc-panel[hidden] {
+  display: none;
+}
+
+.bc-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #122e51;
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+.bc-panel-title {
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.bc-panel-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.bc-panel-close:hover {
+  color: #f8cc46;
+}
+
+.bc-mount {
+  flex: 1 1 auto;
   width: 100%;
-  min-height: 600px;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Mobile: panel fills most of the viewport. */
+@media (max-width: 599px) {
+  .bc-panel {
+    left: 12px;
+    right: 12px;
+    bottom: 84px;
+    width: auto;
+    height: min(70vh, 560px);
+  }
+
+  .bc-launcher {
+    left: 16px;
+    bottom: 16px;
+  }
 }

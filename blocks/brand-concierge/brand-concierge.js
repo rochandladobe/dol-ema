@@ -94,61 +94,103 @@ function readConfig(block) {
 export default async function decorate(block) {
   const config = readConfig(block);
 
-  // Mount point.
+  // Build the floating launcher + chat panel.
   block.textContent = '';
-  const mount = document.createElement('div');
-  mount.id = 'brand-concierge-mount';
-  mount.style.width = '100%';
-  mount.style.minHeight = '600px';
-  block.append(mount);
+
+  const launcher = document.createElement('button');
+  launcher.type = 'button';
+  launcher.className = 'bc-launcher';
+  launcher.setAttribute('aria-label', 'Open chat assistant');
+  launcher.setAttribute('aria-expanded', 'false');
+  launcher.innerHTML = `
+    <span class="bc-launcher-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26" focusable="false">
+        <path fill="currentColor" d="M12 3C6.48 3 2 6.94 2 11.5c0 2.3 1.15 4.37 3 5.86V21l3.3-1.82c1.13.34 2.36.52 3.7.52 5.52 0 10-3.94 10-8.7S17.52 3 12 3Z"/>
+      </svg>
+    </span>
+    <span class="bc-launcher-label">Ask AI</span>`;
+
+  const panel = document.createElement('div');
+  panel.className = 'bc-panel';
+  panel.setAttribute('hidden', '');
+  panel.innerHTML = `
+    <div class="bc-panel-header">
+      <span class="bc-panel-title">Brand Concierge</span>
+      <button type="button" class="bc-panel-close" aria-label="Close chat">&times;</button>
+    </div>
+    <div id="brand-concierge-mount" class="bc-mount"></div>`;
+
+  block.append(launcher, panel);
+
+  const closeBtn = panel.querySelector('.bc-panel-close');
+  let bcStarted = false;
 
   bootstrapAlloyNamespace();
   window.styleConfiguration = STYLE_CONFIG;
 
-  try {
-    // 2) Load the Web SDK.
-    await loadScript(ALLOY_SRC);
+  async function startBC() {
+    if (bcStarted) return;
+    bcStarted = true;
+    try {
+      await loadScript(ALLOY_SRC);
+      window.alloy('configure', {
+        datastreamId: config.datastreamId,
+        orgId: config.orgId,
+        defaultConsent: 'in',
+        edgeDomain: config.edgeDomain,
+        edgeBasePath: config.edgeBasePath,
+        debugEnabled: true,
+        onBeforeEventSend: (options) => {
+          options.xdm = options.xdm || {};
+          options.xdm.web = options.xdm.web || {};
+          options.xdm.web.webPageDetails = options.xdm.web.webPageDetails || {};
+          options.xdm.web.webPageDetails.name = document.title || 'eds-brand-concierge-demo';
+          return true;
+        },
+      });
+      window.alloy('sendEvent', {});
 
-    // 3) Configure Alloy.
-    window.alloy('configure', {
-      datastreamId: config.datastreamId,
-      orgId: config.orgId,
-      defaultConsent: 'in',
-      edgeDomain: config.edgeDomain,
-      edgeBasePath: config.edgeBasePath,
-      debugEnabled: true,
-      onBeforeEventSend: (options) => {
-        options.xdm = options.xdm || {};
-        options.xdm.web = options.xdm.web || {};
-        options.xdm.web.webPageDetails = options.xdm.web.webPageDetails || {};
-        options.xdm.web.webPageDetails.name = document.title || 'eds-brand-concierge-demo';
-        return true;
-      },
-    });
-
-    // 4) Seed the first event.
-    window.alloy('sendEvent', {});
-
-    // 5) Load the Brand Concierge web client.
-    await loadScript(BC_CLIENT_SRC);
-
-    // 6) Bootstrap BC against the mount (which is already in the DOM).
-    if (!(window.adobe && window.adobe.concierge)) {
+      await loadScript(BC_CLIENT_SRC);
+      if (!(window.adobe && window.adobe.concierge)) {
+        // eslint-disable-next-line no-console
+        console.error('[BC] Brand Concierge web client failed to load.');
+        return;
+      }
+      window.adobe.concierge.bootstrap({
+        instanceName: 'alloy',
+        selector: '#brand-concierge-mount',
+        conciergeId: config.conciergeId,
+        datastreamId: config.datastreamId,
+        orgId: config.orgId,
+        sandboxName: config.sandboxName,
+        stylingConfigurations: window.styleConfiguration,
+      });
+    } catch (e) {
+      bcStarted = false;
       // eslint-disable-next-line no-console
-      console.error('[BC] Brand Concierge web client failed to load.');
-      return;
+      console.error('[BC] Failed to initialize Brand Concierge:', e);
     }
-    window.adobe.concierge.bootstrap({
-      instanceName: 'alloy',
-      selector: '#brand-concierge-mount',
-      conciergeId: config.conciergeId,
-      datastreamId: config.datastreamId,
-      orgId: config.orgId,
-      sandboxName: config.sandboxName,
-      stylingConfigurations: window.styleConfiguration,
-    });
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('[BC] Failed to initialize Brand Concierge:', e);
   }
+
+  function openPanel() {
+    panel.removeAttribute('hidden');
+    launcher.setAttribute('aria-expanded', 'true');
+    launcher.classList.add('bc-open');
+    startBC();
+  }
+
+  function closePanel() {
+    panel.setAttribute('hidden', '');
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.classList.remove('bc-open');
+  }
+
+  launcher.addEventListener('click', () => {
+    if (panel.hasAttribute('hidden')) openPanel();
+    else closePanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hasAttribute('hidden')) closePanel();
+  });
 }
