@@ -113,6 +113,35 @@ main .section.brand-concierge-container:not(.dark):not(.hero-gov-container) {
   overflow: auto;
 }
 
+/* Keep the chat text input from being squeezed so narrow that typed
+   characters wrap one-per-line. Force a single horizontal line and let
+   the input flex to fill the row width. */
+.bc-mount .chat-input,
+.bc-mount input.chat-input--input,
+.bc-mount [role="textbox"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+
+/* The input row itself must lay its children out horizontally and allow
+   the input to shrink/grow rather than collapse to one glyph wide. */
+.bc-mount .input-container,
+.bc-mount .chat-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+}
+
+.bc-mount .chat-input-wrapper {
+  flex: 1 1 auto;
+}
+
 /* Mobile: panel fills most of the viewport. */
 @media (max-width: 599px) {
   .bc-panel {
