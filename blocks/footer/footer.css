@@ -259,8 +259,16 @@
 
   .footer .footer-wrapper > div:first-child > p {
     grid-column: 1 / -1;
-    padding-top: 8px;
+    /* Keep room for the logo (80px tall at top:0) plus the divider above it
+       so the seal sits above the address text instead of overlapping it. */
+    padding-top: 112px;
+    margin-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Push the logo below the divider line on mobile. */
+  .footer .footer-wrapper > div:first-child > p::before {
+    top: 24px;
   }
 }
 
