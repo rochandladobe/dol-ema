@@ -15,6 +15,12 @@
 
 const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.34.0/alloy.min.js';
 const BC_CLIENT_SRC = 'https://experience.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
+/* Complete styling/text config (sets window.styleConfiguration). The BC
+   client calls getText() for many keys, including feedback.* keys rendered
+   after each answer; a missing key aborts the response stream with
+   "something went wrong". This file supplies the full set, so we load it
+   rather than hand-maintain a partial list of keys. */
+const STYLE_CONFIG_SRC = 'https://d3mey6isb8np59.cloudfront.net/Test/styleConfigurations.js';
 
 const DEFAULTS = {
   datastreamId: '2ade4e33-1104-465d-ae48-671143b71614',
@@ -24,27 +30,6 @@ const DEFAULTS = {
   region: 'va7',
   conciergeId: '6a2ac78e507e5a6498ba3933',
   sandboxName: 'us-public-sector-sc',
-};
-
-/* The BC web client calls getText() for every one of these keys during
-   render; a missing key throws and aborts rendering. Provide them all. */
-const STYLE_CONFIG = {
-  text: {
-    'input.placeholder': 'Type your question...',
-    'input.send.aria': 'Send message',
-    'input.mic.aria': 'Use microphone',
-    'input.messageInput.aria': 'Message input',
-    'input.message_input.aria': 'Message input',
-    'input.clearHistory.aria': 'Clear chat history',
-    'input.clearHistory.label': 'Clear history',
-    'carousel.next.aria': 'Next',
-    'carousel.prev.aria': 'Previous',
-    'scroll.bottom.aria': 'Scroll to latest message',
-    'feedback.dialog.cancel': 'Cancel',
-    'feedback.dialog.notes': 'Additional notes',
-    'feedback.dialog.submit': 'Submit',
-    'feedback.toast.success': 'Thank you for your feedback',
-  },
 };
 
 function loadScript(src) {
@@ -127,12 +112,13 @@ export default async function decorate(block) {
   let bcStarted = false;
 
   bootstrapAlloyNamespace();
-  window.styleConfiguration = STYLE_CONFIG;
 
   async function startBC() {
     if (bcStarted) return;
     bcStarted = true;
     try {
+      // Load the full styling/text config (sets window.styleConfiguration).
+      await loadScript(STYLE_CONFIG_SRC);
       await loadScript(ALLOY_SRC);
       window.alloy('configure', {
         datastreamId: config.datastreamId,
