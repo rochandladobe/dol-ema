@@ -20,7 +20,7 @@ const BC_CLIENT_SRC = 'https://experience.adobe.net/solutions/experience-platfor
    after each answer; a missing key aborts the response stream with
    "something went wrong". This file supplies the full set, so we load it
    rather than hand-maintain a partial list of keys. */
-const STYLE_CONFIG_SRC = 'https://d3mey6isb8np59.cloudfront.net/Test/styleConfigurations.js';
+const STYLE_CONFIG_SRC = '/scripts/bc-style-config.js';
 
 const DEFAULTS = {
   datastreamId: '2ade4e33-1104-465d-ae48-671143b71614',
