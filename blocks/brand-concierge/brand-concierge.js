@@ -13,8 +13,8 @@
  *   | orgId           | <org>@AdobeOrg |
  */
 
-const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.32.0/alloy.min.js';
-const BC_CLIENT_SRC = 'https://experience-stage.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
+const ALLOY_SRC = 'https://cdn1.adoberesources.net/alloy/2.34.0/alloy.min.js';
+const BC_CLIENT_SRC = 'https://experience.adobe.net/solutions/experience-platform-brand-concierge-web-agent/static-assets/main.js';
 /* Complete styling/text config (sets window.styleConfiguration). The BC
    client calls getText() for many keys, including feedback.* keys rendered
    after each answer; a missing key aborts the response stream with
@@ -25,8 +25,9 @@ const STYLE_CONFIG_SRC = 'https://d3mey6isb8np59.cloudfront.net/Test/styleConfig
 const DEFAULTS = {
   datastreamId: '2ade4e33-1104-465d-ae48-671143b71614',
   orgId: '0E061E2D61F93F260A495FD6@AdobeOrg',
-  edgeDomain: 'edge-int.adobedc.net',
+  edgeDomain: 'edge.adobedc.net',
   edgeBasePath: 'ee',
+  region: 'va7',
 };
 
 function loadScript(src) {
@@ -127,6 +128,9 @@ export default async function decorate(block) {
         idMigrationEnabled: false,
         thirdPartyCookiesEnabled: false,
         prehidingStyle: '.personalization-container { opacity: 0 !important }',
+        conversation: {
+          region: config.region,
+        },
       });
       window.alloy('sendEvent', {});
 
