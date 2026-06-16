@@ -173,3 +173,9 @@ main .section.brand-concierge-container:not(.dark):not(.hero-gov-container) {
     bottom: 16px;
   }
 }
+
+/* Carousel/card images inside BC responses: show the full image. */
+.bc-mount .bc-card__image {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+}
