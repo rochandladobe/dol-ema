@@ -181,7 +181,22 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+/**
+ * Prepends the demo simulation banner to the page.
+ */
+function addDemoBanner() {
+  if (document.querySelector('.demo-banner')) return;
+  const banner = document.createElement('div');
+  banner.className = 'demo-banner';
+  banner.innerHTML = '<span class="demo-banner-icon" aria-hidden="true">🔁</span>'
+    + '<span class="demo-banner-text">Demo simulation — not an official government website</span>'
+    + '<span class="demo-banner-sep" aria-hidden="true">·</span>'
+    + '<span class="demo-banner-powered">Powered by Adobe Brand Concierge</span>';
+  document.body.prepend(banner);
+}
+
 async function loadPage() {
+  addDemoBanner();
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
