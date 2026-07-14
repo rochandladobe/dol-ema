@@ -13,6 +13,9 @@
 const SEAL_LOGO_URL = 'https://beta.dol.gov/themes/custom/dolgov_uswds/logo.svg';
 const MOBILE_QUERY = window.matchMedia('(max-width: 899px)');
 
+// Set to true to show the "Countdown to America's 250th Anniversary" strip.
+const SHOW_COUNTDOWN_BAR = false;
+
 function getMetadata(name) {
   const attr = name && name.includes(':') ? 'property' : 'name';
   const meta = document.head.querySelector(`meta[${attr}="${name}"]`);
@@ -297,7 +300,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // 1a. Light-blue countdown strip (top-most).
-  block.append(buildCountdownBar());
+  if (SHOW_COUNTDOWN_BAR) block.append(buildCountdownBar());
 
   // 1b. Thin US government banner strip with expandable guidance.
   block.append(buildUSABanner());
