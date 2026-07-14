@@ -191,7 +191,7 @@ function addDemoBanner() {
   banner.innerHTML = '<span class="demo-banner-icon" aria-hidden="true">🔁</span>'
     + '<span class="demo-banner-text">Demo simulation — not an official government website</span>'
     + '<span class="demo-banner-sep" aria-hidden="true">·</span>'
-    + '<span class="demo-banner-powered">Powered by Adobe Brand Concierge</span>';
+    + '<span class="demo-banner-powered">Powered by Adobe Experience Manager Experience Modernization Agent</span>';
   document.body.prepend(banner);
 }
 
