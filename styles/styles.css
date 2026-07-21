@@ -564,3 +564,12 @@ main .default-content-wrapper > h1 + p + ul li a[href*="linkedin.com"]::before {
     min-width: 0;
   }
 }
+
+/* Collapse empty trailing sections (no wrappers/content) so they don't
+   render as a stray white band above the footer. */
+main > .section:empty {
+  padding: 0;
+  margin: 0;
+  width: auto;
+  background: transparent;
+}
