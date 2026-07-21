@@ -122,39 +122,56 @@ function isImageParagraph(el) {
 }
 
 /**
- * Wraps an intro heading + its sibling group into a two-column row:
- * text/links on the left, image on the right. The image can appear
- * anywhere in the group; it is always pulled into the right column.
+ * Wraps a sibling group into a two-column intro row. Text/links go in the
+ * content column; the image is pulled into the media column. Pass
+ * mediaFirst=true to place the image on the left (source About layout).
  */
-function buildIntroLayout(wrapper, heading, group, img) {
+function buildIntroLayout(group, img, mediaFirst) {
+  const anchor = group[0];
   const intro = document.createElement('div');
-  intro.className = 'landing-intro';
+  intro.className = mediaFirst ? 'landing-intro media-first' : 'landing-intro';
   const content = document.createElement('div');
   content.className = 'landing-intro-content';
   const media = document.createElement('div');
   media.className = 'landing-intro-media';
 
-  wrapper.insertBefore(intro, heading);
+  anchor.parentElement.insertBefore(intro, anchor);
   group.forEach((el) => {
     if (el !== img) content.append(el);
   });
   media.append(img);
-  intro.append(content, media);
+  intro.append(mediaFirst ? media : content, mediaFirst ? content : media);
 }
 
 /**
  * On landing pages, lays out an intro heading + text/link beside its image
- * as two columns (text left, image right), matching the source design.
- * Handles two shapes: a section-opening h2 whose intro text is followed by
- * an image, and a lead h3 subsection (directly after the section's first h2)
- * that contains an image. No-ops when no adjacent image is present.
+ * as two columns, matching the source design. Handles three shapes:
+ *  1. section-opening h2 whose intro text is followed by an image (image right)
+ *  2. an image paragraph immediately before the section's first h2 (image left,
+ *     e.g. About "Our Mission")
+ *  3. a lead h3 subsection directly after the first h2 that holds an image
+ *     (image right, e.g. News "Newsroom")
+ * No-ops when no adjacent image is present.
  */
 function decorateLandingIntro(main) {
   main.querySelectorAll('.default-content-wrapper').forEach((wrapper) => {
     const h2 = wrapper.querySelector(':scope > h2');
     if (!h2) return;
 
-    // Shape 1: h2 intro — h2 + text/link, then an image.
+    // Shape 2: image paragraph directly before the first h2 (image left).
+    const before = h2.previousElementSibling;
+    if (isImageParagraph(before)) {
+      const group = [before, h2];
+      let sib = h2.nextElementSibling;
+      while (sib && !/^H[1-6]$/.test(sib.tagName)) {
+        group.push(sib);
+        sib = sib.nextElementSibling;
+      }
+      buildIntroLayout(group, before, true);
+      return;
+    }
+
+    // Shape 1: h2 intro — h2 + text/link, then an image (image right).
     const group = [h2];
     let img = null;
     let sib = h2.nextElementSibling;
@@ -167,11 +184,12 @@ function decorateLandingIntro(main) {
       sib = sib.nextElementSibling;
     }
     if (img) {
-      buildIntroLayout(wrapper, h2, group, img);
+      group.push(img);
+      buildIntroLayout(group, img, false);
       return;
     }
 
-    // Shape 2: lead h3 subsection right after the section's opening h2,
+    // Shape 3: lead h3 subsection right after the section's opening h2,
     // holding an image (e.g. News "Newsroom"). Image may come first.
     const h3 = h2.nextElementSibling;
     if (!h3 || h3.tagName !== 'H3') return;
@@ -183,7 +201,7 @@ function decorateLandingIntro(main) {
       h3Group.push(s);
       s = s.nextElementSibling;
     }
-    if (h3Img) buildIntroLayout(wrapper, h3, h3Group, h3Img);
+    if (h3Img) buildIntroLayout(h3Group, h3Img, false);
   });
 }
 
