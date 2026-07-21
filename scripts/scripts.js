@@ -115,6 +115,51 @@ function decorateButtons(main) {
 }
 
 /**
+ * Returns true when a paragraph's only meaningful content is an image.
+ */
+function isImageParagraph(el) {
+  return el && el.tagName === 'P' && el.querySelector('picture, img') && !el.textContent.trim();
+}
+
+/**
+ * On landing pages, lays out the intro h2 + text/link beside its image
+ * as two columns (text left, image right), matching the source design.
+ * No-ops on pages whose intro heading has no adjacent image.
+ */
+function decorateLandingIntro(main) {
+  main.querySelectorAll('.default-content-wrapper').forEach((wrapper) => {
+    const h2 = wrapper.querySelector(':scope > h2');
+    if (!h2) return;
+
+    // collect the intro group: h2 + following siblings up to the next heading
+    const group = [h2];
+    let img = null;
+    let sib = h2.nextElementSibling;
+    while (sib && !/^H[1-6]$/.test(sib.tagName)) {
+      if (isImageParagraph(sib)) {
+        img = sib;
+        break;
+      }
+      group.push(sib);
+      sib = sib.nextElementSibling;
+    }
+    if (!img) return;
+
+    const intro = document.createElement('div');
+    intro.className = 'landing-intro';
+    const content = document.createElement('div');
+    content.className = 'landing-intro-content';
+    const media = document.createElement('div');
+    media.className = 'landing-intro-media';
+
+    wrapper.insertBefore(intro, h2);
+    group.forEach((el) => content.append(el));
+    media.append(img);
+    intro.append(content, media);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -125,6 +170,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateLandingIntro(main);
 }
 
 /**

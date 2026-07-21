@@ -524,3 +524,46 @@ main .default-content-wrapper > h1 + p + ul li a[href*="linkedin.com"]::before {
     font-size: var(--body-font-size-xs, 12px);
   }
 }
+
+/* Landing page intro: h2 + text on the left, image on the right */
+.landing-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.landing-intro-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landing-intro-content h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #123c61;
+  margin: 0 0 12px;
+}
+
+.landing-intro-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (width >= 900px) {
+  .landing-intro {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .landing-intro-content,
+  .landing-intro-media {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
