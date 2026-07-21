@@ -16,22 +16,18 @@
   --color-blue-dark: #1a4480;
   --color-link: var(--link-color);
   --color-link-hover: var(--link-hover-color);
-
   --body-font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
   --heading-font-family: "Merriweather", serif;
   --fixed-font-family: 'Roboto Mono', monospace;
-
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
-
   --heading-font-size-xxl: 50px;
   --heading-font-size-xl: 39px;
   --heading-font-size-l: 28px;
   --heading-font-size-m: 22px;
   --heading-font-size-s: 18px;
   --heading-font-size-xs: 16px;
-
   --nav-height: 90px;
 }
 
@@ -72,7 +68,10 @@ h1, h2, h3, h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); font-weight: 300; }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 300;
+}
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
@@ -166,21 +165,18 @@ main .section {
 /* Light content section: white background spans the FULL page width
    (matches sss.gov, where the white "Registration for Men" row is edge-to-edge),
    while the inner content stays constrained to 1200px and centered. */
-main .section:not(.dark):not(.hero-gov-container) {
+main .section:not(.dark, .hero-gov-container) {
   background-color: var(--color-white);
   color: var(--text-color);
   border-radius: 0;
   max-width: none;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  padding-top: 40px;
-  padding-bottom: 48px;
-  padding-left: 0;
-  padding-right: 0;
+  padding: 40px 0 48px;
 }
 
 /* Keep light-section content centered at the standard content width. */
-main .section:not(.dark):not(.hero-gov-container) > div {
+main .section:not(.dark, .hero-gov-container) > div {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: 48px;
@@ -205,6 +201,8 @@ main .section.dark {
   margin-left: calc(50% - 50vw);
   padding-left: 0;
   padding-right: 0;
+  background-color: var(--section-dark-bg);
+  color: var(--section-dark-color);
 }
 
 /* Keep dark-section content centered at the standard content width. */
@@ -218,11 +216,6 @@ main .section.dark > div {
 /* section metadata */
 main .section.light {
   background-color: var(--color-gray-light);
-}
-
-main .section.dark {
-  background-color: var(--section-dark-bg);
-  color: var(--section-dark-color);
 }
 
 main .section.dark h1,
@@ -277,21 +270,24 @@ main > div.section:first-of-type:not(.hero-gov-container) {
     /* Full-bleed navy background */
     background-color: #122e51;
     color: #fff;
-    font-family: "Merriweather", serif;
+    font-family: Merriweather, serif;
     font-weight: 300;
+
     /* Span full viewport width */
     width: 100vw;
+
     /* Break out: escape wrapper's offset from viewport left */
     margin-left: calc(-48px - max(0px, (100vw - 100% - 96px) / 2));
+
     /* Restore readable indent: text starts at same x as page content */
-    padding-left: calc(48px + max(0px, (100vw - 100% - 96px) / 2));
-    padding-right: calc(48px + max(0px, (100vw - 100% - 96px) / 2));
+    padding: 35px calc(48px + max(0px, (100vw - 100% - 96px) / 2)) 60px;
+
     /* Vertical padding for the band height */
-    padding-top: 35px;
     font-size: 1.95rem;
-    padding-bottom: 60px;
+
     /* Thin underline rule beneath the title */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    border-bottom: 2px solid rgb(255 255 255 / 35%);
+
     /* Reset vertical margins */
     margin-top: 0;
     margin-bottom: 0;
@@ -303,17 +299,15 @@ main > div.section:first-of-type:not(.hero-gov-container) {
   main > div.section:first-of-type:not(.hero-gov-container) .default-content-wrapper > h1:first-child {
     background-color: #122e51;
     color: #fff;
-    font-family: "Merriweather", serif;
+    font-family: Merriweather, serif;
     font-weight: 300;
     width: 100vw;
+
     /* section padding at this breakpoint is 32px; wrapper 100% = 100vw - 64px */
     margin-left: calc(-32px - max(0px, (100vw - 100% - 64px) / 2));
-    padding-left: calc(32px + max(0px, (100vw - 100% - 64px) / 2));
-    padding-right: calc(32px + max(0px, (100vw - 100% - 64px) / 2));
-    padding-top: 28px;
+    padding: 28px calc(32px + max(0px, (100vw - 100% - 64px) / 2)) 50px;
     font-size: 1.8rem;
-    padding-bottom: 50px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    border-bottom: 2px solid rgb(255 255 255 / 35%);
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -324,16 +318,13 @@ main > div.section:first-of-type:not(.hero-gov-container) {
   main > div.section:first-of-type:not(.hero-gov-container) .default-content-wrapper > h1:first-child {
     background-color: #122e51;
     color: #fff;
-    font-family: "Merriweather", serif;
+    font-family: Merriweather, serif;
     font-weight: 300;
     font-size: 1.6rem;
     width: 100vw;
     margin-left: calc(-24px - max(0px, (100vw - 100% - 48px) / 2));
-    padding-left: calc(24px + max(0px, (100vw - 100% - 48px) / 2));
-    padding-right: calc(24px + max(0px, (100vw - 100% - 48px) / 2));
-    padding-top: 24px;
-    padding-bottom: 44px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    padding: 24px calc(24px + max(0px, (100vw - 100% - 48px) / 2)) 44px;
+    border-bottom: 2px solid rgb(255 255 255 / 35%);
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -378,6 +369,7 @@ main .default-content-wrapper > ol:first-of-type li:not(:last-child)::after {
   color: var(--color-gray);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .default-content-wrapper > ol:first-of-type li a {
   color: var(--color-blue);
   text-decoration: underline;
@@ -389,20 +381,19 @@ main .default-content-wrapper > ol:first-of-type li a:hover {
 
 /* Section header (page title) on migrated inner pages: full-bleed blue
    gradient band with white title (matches dol-hero__blue_gradient). */
+/* stylelint-disable-next-line no-descending-specificity */
 main .default-content-wrapper > h1 {
   color: #fff;
-  font-family: "Merriweather", serif;
+  font-family: Merriweather, serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
   background: linear-gradient(to right, #123c61, #48a3f8);
+
   /* Break out of the centered content wrapper to span the full width. */
   width: 100vw;
   margin-left: calc(-48px - max(0px, (100vw - 100% - 96px) / 2));
-  padding-left: calc(48px + max(0px, (100vw - 100% - 96px) / 2));
-  padding-right: calc(48px + max(0px, (100vw - 100% - 96px) / 2));
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px calc(48px + max(0px, (100vw - 100% - 96px) / 2));
   margin-top: 0;
   margin-bottom: 32px;
   box-sizing: border-box;
@@ -431,10 +422,12 @@ main .default-content-wrapper > h1 + p + ul {
   padding: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .default-content-wrapper > h1 + p + ul li {
   margin: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .default-content-wrapper > h1 + p + ul li a {
   display: inline-flex;
   align-items: center;
@@ -449,6 +442,7 @@ main .default-content-wrapper > h1 + p + ul li a {
   transition: background-color 0.15s ease;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .default-content-wrapper > h1 + p + ul li a:hover {
   background-color: var(--color-blue-dark);
 }
@@ -459,32 +453,25 @@ main .default-content-wrapper > h1 + p + ul li a::before {
   width: 20px;
   height: 20px;
   background-color: #fff;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
-  -webkit-mask-size: contain;
   mask-size: contain;
 }
 
 /* Per-platform icons matched by the share-link href. */
 main .default-content-wrapper > h1 + p + ul li a[href^="mailto:"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
 }
 
 main .default-content-wrapper > h1 + p + ul li a[href*="twitter.com"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
 }
 
 main .default-content-wrapper > h1 + p + ul li a[href*="facebook.com"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z'/%3E%3C/svg%3E");
 }
 
 main .default-content-wrapper > h1 + p + ul li a[href*="linkedin.com"]::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z'/%3E%3C/svg%3E");
 }
 
@@ -539,6 +526,7 @@ main .default-content-wrapper > h1 + p + ul li a[href*="linkedin.com"]::before {
   justify-content: center;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .landing-intro-content h2 {
   font-family: var(--heading-font-family);
   font-weight: 700;
