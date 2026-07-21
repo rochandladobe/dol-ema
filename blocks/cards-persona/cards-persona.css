@@ -50,7 +50,7 @@
 .cards-persona-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgb(217 83 106 / 50%);
+  background-color: rgb(76 175 96 / 50%);
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
