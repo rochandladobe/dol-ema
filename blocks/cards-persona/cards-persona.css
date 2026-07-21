@@ -74,6 +74,12 @@
   line-height: 1.25;
 }
 
+/* "I Am A..." persona labels are uppercase (matches source); the wide
+   "Navigate Federal Labor Laws" labels stay title case. */
+.cards-persona:not(.wide) .cards-persona-label {
+  text-transform: uppercase;
+}
+
 .cards-persona-arrow {
   color: #f8cc46;
   font-weight: 700;
@@ -90,6 +96,13 @@
    wider/shorter than the portrait persona cards, smaller label. */
 .cards-persona.wide .cards-persona-image {
   aspect-ratio: 4 / 3;
+}
+
+/* Tighten vertical rhythm between the two card sections (I Am A... and
+   Navigate) so the rows sit closer, matching the source. */
+main .section.dark.cards-persona-container {
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 @media (width <= 899px) {

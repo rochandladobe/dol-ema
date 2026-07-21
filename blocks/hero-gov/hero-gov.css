@@ -39,13 +39,27 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(10, 24, 43, 0.75) 0%, rgba(10, 24, 43, 0.45) 45%, rgba(10, 24, 43, 0) 75%);
+  background: linear-gradient(90deg, rgb(10 24 43 / 75%) 0%, rgb(10 24 43 / 45%) 45%, rgb(10 24 43 / 0%) 75%);
+  pointer-events: none;
+}
+
+/* Freedom 250 badge, lower-right of the hero photo (matches source). */
+.hero-gov::after {
+  content: "";
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 2;
+  width: 96px;
+  height: 96px;
+  background: url("/icons/freedom250-badge.png") center / contain no-repeat;
   pointer-events: none;
 }
 
 /* Content row: constrained to 1200px and centered. Kept static (NOT
    positioned) so the absolutely-positioned image inside it resolves its
    inset:0 against .hero-gov and spans the full viewport width. */
+/* stylelint-disable-next-line no-descending-specificity */
 .hero-gov > div {
   display: flex;
   align-items: center;
@@ -64,12 +78,12 @@
 
 .hero-gov h1 {
   color: #fff;
-  font-family: "Merriweather", serif;
+  font-family: Merriweather, serif;
   font-size: 3.125rem;
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 35%);
 }
 
 /* Yellow decorative bar beneath the title. */
@@ -82,7 +96,7 @@
   background-color: #f8cc46;
 }
 
-@media (max-width: 899px) {
+@media (width <= 899px) {
   .hero-gov {
     min-height: 440px;
   }
@@ -99,5 +113,12 @@
     width: 110px;
     height: 8px;
     margin-top: 18px;
+  }
+
+  .hero-gov::after {
+    width: 64px;
+    height: 64px;
+    right: 20px;
+    bottom: 20px;
   }
 }
