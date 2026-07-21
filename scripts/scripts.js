@@ -122,16 +122,39 @@ function isImageParagraph(el) {
 }
 
 /**
- * On landing pages, lays out the intro h2 + text/link beside its image
+ * Wraps an intro heading + its sibling group into a two-column row:
+ * text/links on the left, image on the right. The image can appear
+ * anywhere in the group; it is always pulled into the right column.
+ */
+function buildIntroLayout(wrapper, heading, group, img) {
+  const intro = document.createElement('div');
+  intro.className = 'landing-intro';
+  const content = document.createElement('div');
+  content.className = 'landing-intro-content';
+  const media = document.createElement('div');
+  media.className = 'landing-intro-media';
+
+  wrapper.insertBefore(intro, heading);
+  group.forEach((el) => {
+    if (el !== img) content.append(el);
+  });
+  media.append(img);
+  intro.append(content, media);
+}
+
+/**
+ * On landing pages, lays out an intro heading + text/link beside its image
  * as two columns (text left, image right), matching the source design.
- * No-ops on pages whose intro heading has no adjacent image.
+ * Handles two shapes: a section-opening h2 whose intro text is followed by
+ * an image, and a lead h3 subsection (directly after the section's first h2)
+ * that contains an image. No-ops when no adjacent image is present.
  */
 function decorateLandingIntro(main) {
   main.querySelectorAll('.default-content-wrapper').forEach((wrapper) => {
     const h2 = wrapper.querySelector(':scope > h2');
     if (!h2) return;
 
-    // collect the intro group: h2 + following siblings up to the next heading
+    // Shape 1: h2 intro — h2 + text/link, then an image.
     const group = [h2];
     let img = null;
     let sib = h2.nextElementSibling;
@@ -143,19 +166,24 @@ function decorateLandingIntro(main) {
       group.push(sib);
       sib = sib.nextElementSibling;
     }
-    if (!img) return;
+    if (img) {
+      buildIntroLayout(wrapper, h2, group, img);
+      return;
+    }
 
-    const intro = document.createElement('div');
-    intro.className = 'landing-intro';
-    const content = document.createElement('div');
-    content.className = 'landing-intro-content';
-    const media = document.createElement('div');
-    media.className = 'landing-intro-media';
-
-    wrapper.insertBefore(intro, h2);
-    group.forEach((el) => content.append(el));
-    media.append(img);
-    intro.append(content, media);
+    // Shape 2: lead h3 subsection right after the section's opening h2,
+    // holding an image (e.g. News "Newsroom"). Image may come first.
+    const h3 = h2.nextElementSibling;
+    if (!h3 || h3.tagName !== 'H3') return;
+    const h3Group = [h3];
+    let h3Img = null;
+    let s = h3.nextElementSibling;
+    while (s && !/^H[1-6]$/.test(s.tagName)) {
+      if (isImageParagraph(s)) h3Img = s;
+      h3Group.push(s);
+      s = s.nextElementSibling;
+    }
+    if (h3Img) buildIntroLayout(wrapper, h3, h3Group, h3Img);
   });
 }
 
