@@ -554,6 +554,15 @@ main .default-content-wrapper > h1 + p + ul li a[href*="linkedin.com"]::before {
   object-fit: cover;
 }
 
+/* Seal-style intro (About): logo mark, not a full-bleed photo — don't upscale */
+.landing-intro.media-first .landing-intro-media img {
+  width: 272px;
+  height: 281px;
+  max-width: 100%;
+  border-radius: 0;
+  object-fit: contain;
+}
+
 @media (width >= 900px) {
   .landing-intro {
     flex-direction: row;
