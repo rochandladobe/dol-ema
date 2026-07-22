@@ -97,12 +97,22 @@
 }
 
 @media (width <= 899px) {
+  /* Drop the photo background: navy band with the title only. */
   .hero-gov {
-    min-height: 440px;
+    min-height: 0;
+    background-color: #122e51;
   }
 
+  /* Hide the background image, gradient overlay, and Freedom 250 badge. */
+  .hero-gov > div > div:first-child,
+  .hero-gov::before,
+  .hero-gov::after {
+    display: none;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
   .hero-gov > div {
-    padding: 48px 24px;
+    padding: 32px 24px;
   }
 
   .hero-gov h1 {
@@ -113,12 +123,5 @@
     width: 110px;
     height: 8px;
     margin-top: 18px;
-  }
-
-  .hero-gov::after {
-    width: 64px;
-    height: 64px;
-    right: 20px;
-    bottom: 20px;
   }
 }

@@ -32,3 +32,10 @@ main .section.dark.seal-banner-container {
   width: 100%;
   height: auto;
 }
+
+/* Hide the seal banner on mobile (content starts at "I Am A..."). */
+@media (width <= 899px) {
+  main .section.seal-banner-container {
+    display: none;
+  }
+}
