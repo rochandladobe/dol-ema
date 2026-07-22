@@ -61,6 +61,24 @@
   opacity: 1;
 }
 
+/* Alternate the hover overlay color per card position:
+   1 yellow, 2 green, 3 red, 4 white (pattern repeats every 4 cards). */
+.cards-persona li:nth-child(4n + 1) .cards-persona-overlay {
+  background-color: rgb(248 204 70 / 50%);
+}
+
+.cards-persona li:nth-child(4n + 2) .cards-persona-overlay {
+  background-color: rgb(76 175 96 / 50%);
+}
+
+.cards-persona li:nth-child(4n + 3) .cards-persona-overlay {
+  background-color: rgb(217 83 106 / 50%);
+}
+
+.cards-persona li:nth-child(4n) .cards-persona-overlay {
+  background-color: rgb(255 255 255 / 45%);
+}
+
 /* White linked label with yellow arrow. */
 .cards-persona-label {
   display: flex;
