@@ -125,12 +125,6 @@ main .section.dark.cards-persona-container {
 
 @media (width <= 899px) {
   .cards-persona ul {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (width <= 479px) {
-  .cards-persona ul {
     grid-template-columns: 1fr;
   }
 }
